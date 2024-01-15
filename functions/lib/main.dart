@@ -9,14 +9,15 @@ Future<dynamic> main(final context) async {
   String timetable = "${year}_${department}_$section.csv";
   context.log(timetable);
 
-  final jsonData = await csvToJson(context, "timetables/$timetable");
-  print(jsonData);
+  final jsonData = await csvToJson(context, "/timetables/$timetable");
+  context.log(jsonData);
   return context.res.json(json);
 }
 
 Future<String> csvToJson(final context, String filePath) async {
   try {
     final file = File(filePath);
+    context.log(filePath);
     final csvData = await file.readAsString();
     final parsedCsv = CsvToListConverter().convert(csvData);
 
