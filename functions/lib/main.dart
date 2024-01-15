@@ -56,12 +56,15 @@ Future<dynamic> main(final context) async {
   String year = context.req.query['year'];
   String department = context.req.query['department'];
   String section = context.req.query['section'];
-  String timetable = "${year}_${department}_$section.csv";
+  String timetable = "${year}_${department}_$section";
   context.log(timetable);
-
+  String url = timetables[timetable];
+  if (url.isEmpty) {
+    return context.req.json({'error': 'no url found'}, 400);
+  }
   final jsonData = await csvToJson(context, timetables[timetable]);
   context.log(jsonData);
-  return context.res.send(jsonData);
+  return context.res.send(jsonData, 200);
 }
 
 // void main() async {
