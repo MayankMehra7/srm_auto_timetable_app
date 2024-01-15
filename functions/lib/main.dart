@@ -11,14 +11,15 @@ Future<dynamic> main(final context) async {
 
   final jsonData = await csvToJson(context, "/timetables/$timetable");
   context.log(jsonData);
-  return context.res.json(json);
+  return context.res.json(jsonData);
 }
 
-Future<String> csvToJson(final context, String filePath) async {
+csvToJson(final context, String filePath) async {
   try {
     final file = File(filePath);
     context.log(filePath);
     final csvData = await file.readAsString();
+    context.log(csvData);
     final parsedCsv = CsvToListConverter().convert(csvData);
 
     // Create the desired JSON structure
@@ -29,7 +30,7 @@ Future<String> csvToJson(final context, String filePath) async {
       jsonData[day] = values;
     }
 
-    return jsonEncode(jsonData);
+    return jsonData;
   } catch (error) {
     context.error('Error reading CSV file: $error');
     return '{"error": "Failed to read CSV file"}';
