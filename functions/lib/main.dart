@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:csv/csv.dart';
+import 'package:path/path.dart' as p;
 
 Future<dynamic> main(final context) async {
   String year = context.req.query['year'];
@@ -7,15 +8,15 @@ Future<dynamic> main(final context) async {
   String section = context.req.query['section'];
   String timetable = "${year}_${department}_$section.csv";
   context.log(timetable);
-
-  final jsonData = await csvToJson(context, "timetables/$timetable");
+  context.log(p.current);
+  final jsonData = await csvToJson(context, p.join("timetables", timetable));
   context.log(jsonData);
   return context.res.send(jsonData);
 }
 
 // void main() async {
 //   String timetable = "1_bca_a.csv";
-//   final jsonData = await csvToJson("timetables/$timetable");
+//   final jsonData = await csvToJson("timetables/1_bca_a.csv");
 //   print(jsonData);
 // }
 
@@ -34,7 +35,6 @@ csvToJson(final context, String filePath) async {
       final values = row.sublist(1); // Skip the first column (day)
       jsonData[day] = values;
     }
-
     return jsonData;
   } catch (error) {
     context.error('Error reading CSV file: $error');
