@@ -9,7 +9,7 @@ environment:
 # Add regular dependencies here.
 dependencies:
   csv: ^5.1.1
-  http: ^1.1.2
+  http:
 
 dev_dependencies:
   lints: ^2.1.0
