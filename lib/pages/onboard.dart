@@ -14,6 +14,10 @@ class _OnboardState extends State<Onboard> {
   // TODO: implement onboard UI
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold(
+      body: Center(
+        child: Text("Onboard"),
+      ),
+    );
   }
 }
