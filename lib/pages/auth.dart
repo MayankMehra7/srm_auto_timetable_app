@@ -14,8 +14,6 @@ class Auth extends StatefulWidget {
 }
 
 class _AuthState extends State<Auth> {
-  // TODO: implement auth status check and redirect
-  // TODO: implement auth UI
 
   void checkAuth() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
