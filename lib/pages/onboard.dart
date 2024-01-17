@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 
 class Onboard extends StatefulWidget {
   const Onboard({super.key});
@@ -21,7 +22,7 @@ class _OnboardState extends State<Onboard> {
     'BCA',
     'BCA DS',
     'MCA',
-    'M.Sc ADS',
+    'MSc ADS',
   ];
 
   List<String> sections = [
@@ -343,7 +344,10 @@ class _OnboardState extends State<Onboard> {
                   //continue text_icon button
                   const SizedBox(height: 20),
                   TextButton(
-                    onPressed: () {
+                    onPressed: () async {
+                      String fileName =
+                          "${year.toString()}_${_class.toLowerCase()}_${_section.toLowerCase()}";
+                      http.Response res = await http.get(Uri.parse('https://srmtt.livewires.tech/assets/json/$fileName'));
                       Navigator.pushReplacementNamed(context, '/home');
                     },
                     style: ButtonStyle(
