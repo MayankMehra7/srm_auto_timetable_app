@@ -14,7 +14,6 @@ class Auth extends StatefulWidget {
 }
 
 class _AuthState extends State<Auth> {
-
   void checkAuth() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (FirebaseAuth.instance.currentUser != null) {
@@ -88,79 +87,73 @@ class _AuthState extends State<Auth> {
             // ),
 
             //sign in using google
-            const SizedBox(height: 5),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 40, right: 40, top: 5, bottom: 20),
-              child: OutlinedButton(
-                  onPressed: () async {
-                    GoogleAuthProvider googleAuthProvider =
-                        GoogleAuthProvider();
-                    await FirebaseAuth.instance
-                        .signInWithPopup(googleAuthProvider)
-                        .then((value) {
-                      if (FirebaseAuth.instance.currentUser!.email!
-                              .split("@")
-                              .last !=
-                          "srmist.edu.in") {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          backgroundColor: Colors.red,
-                          content: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.error_outline_rounded,
-                                color: Colors.white,
-                              ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                "Please sign in using SRM Gmail",
-                                style: GoogleFonts.openSans(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500),
-                              )
-                            ],
-                          ),
-                        ));
-                      } else {
-                        checkAuth();
-                      }
-
-                    });
-                  },
-                  style: OutlinedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      foregroundColor: Colors.grey[200],
-                      shadowColor: Color.fromARGB(255, 17, 74, 121),
-                      elevation: 5,
-
-                      //fixedSize:,
-                      side: BorderSide(
-                          width: 2, color: Color.fromARGB(255, 17, 74, 121))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                            height: 35,
-                            child: Image.asset("assets/images/google.png")),
-                      ),
-                      SizedBox(width: 7),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("Sign in with Google",
-                            style: GoogleFonts.poppins(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                      )
-                    ],
-                  )),
-            ),
+            const SizedBox(height: 20),
+            OutlinedButton(
+                onPressed: () async {
+                  GoogleAuthProvider googleAuthProvider = GoogleAuthProvider();
+                  await FirebaseAuth.instance
+                      .signInWithPopup(googleAuthProvider)
+                      .then((value) {
+                    if (FirebaseAuth.instance.currentUser!.email!
+                            .split("@")
+                            .last !=
+                        "srmist.edu.in") {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.error_outline_rounded,
+                              color: Colors.white,
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Text(
+                              "Please sign in using SRM Gmail",
+                              style: GoogleFonts.openSans(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500),
+                            )
+                          ],
+                        ),
+                      ));
+                    } else {
+                      checkAuth();
+                    }
+                  });
+                },
+                style: OutlinedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    foregroundColor: Colors.grey[200],
+                    shadowColor: Color.fromARGB(255, 17, 74, 121),
+                    elevation: 5,
+                    fixedSize:
+                        Size(MediaQuery.of(context).size.width * 0.9, 50),
+                    side: BorderSide(
+                        width: 2, color: Color.fromARGB(255, 17, 74, 121))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                          height: 35,
+                          child: Image.asset("assets/images/google.png")),
+                    ),
+                    SizedBox(width: 7),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("Sign in with Google",
+                          style: GoogleFonts.poppins(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                    )
+                  ],
+                )),
             const Spacer(),
             Padding(
                 padding: const EdgeInsets.all(8.0),
