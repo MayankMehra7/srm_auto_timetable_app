@@ -1,0 +1,57 @@
+{
+    "Day 1": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "AI(SB)",
+        "10.10 AM To 11.00 AM": "BMPL (NA)",
+        "11.00 AM To 11.50 AM": "ELE2\/MDS\/DMA\/TSA (MR\/AN\/BE\/AE)",
+        "11.50 AM To 12.40 PM": "AI LAB PLY1(SB)",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "BREAK",
+        "2.15 PM To 3.00 PM": "DVC(RT)",
+        "3.00 PM To 3. 45 PM": "DVC(RT)"
+    },
+    "Day 2": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "BMPL LAB (AE)\nPLY 2",
+        "10.10 AM To 11.00 AM": "BMPL LAB (AE)\nPLY 2",
+        "11.00 AM To 11.50 AM": "CDC",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "ELE2\/MDS\/DMA\/TSA(MR\/AN\/BE\/AE)",
+        "1.30 PM To 2.15 PM": "DVC(RT)",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "ELEC1\/MLMM\/NLP\/ (VRE\/RT\/MP\/AN)"
+    },
+    "Day 3": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "ELE2\/MDS\/DMA\/ TSA (MR\/AN\/BE\/AE)",
+        "10.10 AM To 11.00 AM": "BMPL LAB (NA)\nPLY 3",
+        "11.00 AM To 11.50 AM": "BMPL LAB (NA)\nPLY 3",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "DVC LAB (RT)\nPLY 2",
+        "1.30 PM To 2.15 PM": "BREAK",
+        "2.15 PM To 3.00 PM": "AI LAB (SH) \nPLY2 ",
+        "3.00 PM To 3. 45 PM": "ELEC1\/MLMM\/NLP\/ (VRE\/RT\/MP\/AN)"
+    },
+    "Day 4": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "ELEC1\/MLMM\/ NLP\/ (VRE\/Sk\/MP\/AN)",
+        "10.10 AM To 11.00 AM": "ELE2\/MDS\/DMA\/ TSA (MR\/AN\/BE\/AE)",
+        "11.00 AM To 11.50 AM": "AI(SB)",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "DVC LAB (RT)\nPLY 3",
+        "1.30 PM To 2.15 PM": "AI LAB (SB) \nPLY3",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "BMPL(NA)"
+    },
+    "Day 5": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "DVC LAB (RT)\nPLY 1",
+        "10.10 AM To 11.00 AM": "DVC LAB (RT)\nPLY 1",
+        "11.00 AM To 11.50 AM": "BMPL(NA)",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "AI LAB (SB) \nPLY3",
+        "1.30 PM To 2.15 PM": "AI(SB)",
+        "2.15 PM To 3.00 PM": "ELEC1\/MLMM\/NLP\/(VRE\/RT\/MP\/AN)",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    }
+}

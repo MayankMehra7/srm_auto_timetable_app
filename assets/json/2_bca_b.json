@@ -1,0 +1,57 @@
+{
+    "Day 1": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "DA Using R (AS)\/\nMM (LS)\/ \nAI(KS)\n402,708,403",
+        "10.10 AM To 11.00 AM": "DA Using R (AS)\/\nMM (LS)\/ \nAI(KS)\n402,708,403",
+        "11.00 AM To 11.50 AM": "Maths",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "CDC",
+        "1.30 PM To 2.15 PM": "CDC",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "Data Analystics Using R (AS)\/\nMULTIMEDIA (LS)\/ \nAI(KS)"
+    },
+    "Day 2": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "DB (KK) \n(807)",
+        "10.10 AM To 11.00 AM": "Maths",
+        "11.00 AM To 11.50 AM": "DB (KK)",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "VB.Net  LAB (AT)\n403",
+        "1.30 PM To 2.15 PM": "VB.NET (AT) 607",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "VB.NET (AT)"
+    },
+    "Day 3": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "VB.NET LAB (AT)\n403 ",
+        "10.10 AM To 11.00 AM": "VB.NET LAB (AT)\n403 ",
+        "11.00 AM To 11.50 AM": "Maths",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "DA Using R (AS)\/\nMM (LS)\/\n AI(KS)\n402,708,403",
+        "1.30 PM To 2.15 PM": "DA Using R (AS)\/\nMM (LS)\/\n AI(KS)\n402,708,403",
+        "2.15 PM To 3.00 PM": "Data Base LAB (KK)\n908",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 4": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "DA Using R (AS)- 607\/\nMM (LS)- 606\/ \nAI(KS) 603",
+        "10.10 AM To 11.00 AM": "Maths",
+        "11.00 AM To 11.50 AM": "DB (KK)\n607",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "VB.NET LAB (AT)\n403",
+        "1.30 PM To 2.15 PM": "DA Using R (AS)\/MM (LS)\/ AI(KS)",
+        "2.15 PM To 3.00 PM": "Data Base LAB (KK)\n908",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 5": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "Data Base LAB (KK)\n908",
+        "10.10 AM To 11.00 AM": "VB.NET (AT)",
+        "11.00 AM To 11.50 AM": "DB (KK) 606",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "DA Using R (AS)\/MM (LS)\/ AI(KS)",
+        "1.30 PM To 2.15 PM": "VB.NET (AT)",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "Data Base LAB (KK)\n403\/ NN"
+    }
+}

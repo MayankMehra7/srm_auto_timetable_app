@@ -1,0 +1,57 @@
+{
+    "Day 1": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "DVC LAB (MN)\nPLY 1\n",
+        "10.10 AM To 11.00 AM": "DVC LAB (MN)\nPLY 1\n",
+        "11.00 AM To 11.50 AM": "ELE2\/MDS\/DMA\/TSA (MR\/AN\/BE\/AE)",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "BMPL(AT)",
+        "1.30 PM To 2.15 PM": "BMPL(AT)-423",
+        "2.15 PM To 3.00 PM": "DVC(MN)-202",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 2": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "BMPL LAB (JK)\nPLY1\n",
+        "10.10 AM To 11.00 AM": "BMPL LAB (JK)\nPLY1\n",
+        "11.00 AM To 11.50 AM": "AI(MP)",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "ELE2\/MDS\/DMA\/TSA(MR\/AN\/BE\/AE)",
+        "1.30 PM To 2.15 PM": "DVC (MN)\n226",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "ELEC1\/MLMM\/NLP\/ (VRE\/RT\/MP\/AN)"
+    },
+    "Day 3": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "ELE2\/MDS\/DMA\/TSA (MR\/AN\/BE\/AE)",
+        "10.10 AM To 11.00 AM": "AI LAB (MP)PLY1 LAB",
+        "11.00 AM To 11.50 AM": "AI LAB (MP)PLY1 LAB",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "DVC LAB MN\nPLY 1\n",
+        "1.30 PM To 2.15 PM": "DVC LAB MN\nPLY 1\n",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "ELEC1\/MLMM\/NLP\/ (VRE\/Sk\/MP\/AN)"
+    },
+    "Day 4": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "ELEC1\/MLMM\/NLP\/ (VRE\/RT\/MP\/AN)",
+        "10.10 AM To 11.00 AM": "ELE2\/MDS\/DMA\/ TSA (MR\/AN\/BE\/AE)",
+        "11.00 AM To 11.50 AM": "DVC(MN) -226",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "AI(MP)",
+        "1.30 PM To 2.15 PM": "BREAK",
+        "2.15 PM To 3.00 PM": "AI LAB PLY1(MP)",
+        "3.00 PM To 3. 45 PM": "AI LAB PLY1(MP)"
+    },
+    "Day 5": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "AI(MP)-423",
+        "10.10 AM To 11.00 AM": "CDC",
+        "11.00 AM To 11.50 AM": "BMPL(AT)-226",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "BMPL LAB (JK)\nPLY1\n",
+        "1.30 PM To 2.15 PM": "BMPL LAB (JK)\nPLY1\n",
+        "2.15 PM To 3.00 PM": "ELEC1\/MLMM\/NLP\/(VRE\/RT\/MP\/AN)-226",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    }
+}

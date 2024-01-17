@@ -1,0 +1,57 @@
+{
+    "Day 1": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "PROJ(SK)",
+        "10.10 AM To 11.00 AM": "IA(SK)",
+        "11.00 AM To 11.50 AM": "IOT(LS)",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "PROJ(DH)\n(403)",
+        "1.30 PM To 2.15 PM": "BREAK",
+        "2.15 PM To 3.00 PM": "IA LAB (SK)\nPLY LAB 3 ",
+        "3.00 PM To 3. 45 PM": "IA LAB (SK)\nPLY LAB 3 "
+    },
+    "Day 2": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "SMT (SL)",
+        "10.10 AM To 11.00 AM": "IOT(LS)",
+        "11.00 AM To 11.50 AM": "PROJ (MR)\n(908)",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "LIB",
+        "1.30 PM To 2.15 PM": "IA(SK)",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "PROJ(DH)"
+    },
+    "Day 3": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "IOT(LS)",
+        "10.10 AM To 11.00 AM": "LIB",
+        "11.00 AM To 11.50 AM": "IA- LAB (SK)\n708 LAB",
+        "11.50 AM To 12.40 PM": "IA- LAB (SK)\n708 LAB",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "SMT (SL)",
+        "2.15 PM To 3.00 PM": "PROJ (SAR)",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 4": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "PROJ (SAR)\n(708)",
+        "10.10 AM To 11.00 AM": "SMT (SL)",
+        "11.00 AM To 11.50 AM": "BREAK",
+        "11.50 AM To 12.40 PM": "PROJ(MR)\n(708)",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "IA(SK)",
+        "2.15 PM To 3.00 PM": "IOT-LS",
+        "3.00 PM To 3. 45 PM": "PROJ(AN)\n(402)"
+    },
+    "Day 5": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "SMT(SL)",
+        "10.10 AM To 11.00 AM": "IA (SK)",
+        "11.00 AM To 11.50 AM": "PROJ(AN)",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "PROJ(AN)\n(402)",
+        "1.30 PM To 2.15 PM": "BREAK",
+        "2.15 PM To 3.00 PM": "PROJ(MR) LAB PLY1",
+        "3.00 PM To 3. 45 PM": "PROJ(MR) LAB PLY1"
+    }
+}

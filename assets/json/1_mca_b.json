@@ -1,0 +1,57 @@
+{
+    "Day 1": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "LIB",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "CN \n(JVS)",
+        "11.50 AM To 12.40 PM": "CDC",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "Maths",
+        "2.15 PM To 3.00 PM": "Python\n(PC)",
+        "3.00 PM To 3. 45 PM": "R (AN) \nLAB 908"
+    },
+    "Day 2": {
+        "8.30 AM To 9.20 AM": "PYTHON (PC)\nLAB 402 \/ SN",
+        "9.20 AM To 10.10 AM": "PYTHON (PC)\n LAB 402 ",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "CN JVS",
+        "11.50 AM To 12.40 PM": "Maths",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "ANDROID\/C#\/ST-708",
+        "2.15 PM To 3.00 PM": "403",
+        "3.00 PM To 3. 45 PM": "402- SAR"
+    },
+    "Day 3": {
+        "8.30 AM To 9.20 AM": "LIB",
+        "9.20 AM To 10.10 AM": "LIB",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "ANDROID\/C#\/ST",
+        "11.50 AM To 12.40 PM": "CN (JVS)",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "CDC",
+        "2.15 PM To 3.00 PM": "PYTHON\n(PC)",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 4": {
+        "8.30 AM To 9.20 AM": "CN LAB  (JVS)\n708",
+        "9.20 AM To 10.10 AM": "LIB",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "Maths",
+        "11.50 AM To 12.40 PM": "R (AN)\nLAB 402",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "ANDROID\/C#\/ST\nSAR,PC,DH,RS,RK,MRS,BN\n708,403,402",
+        "2.15 PM To 3.00 PM": "ANDROID\/C#\/ST",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 5": {
+        "8.30 AM To 9.20 AM": "LIB",
+        "9.20 AM To 10.10 AM": "CN- (JVS)\n708",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "Maths",
+        "11.50 AM To 12.40 PM": "Python\n(PC)",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "LIB",
+        "2.15 PM To 3.00 PM": "CDC",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    }
+}

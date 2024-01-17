@@ -1,0 +1,57 @@
+{
+    "Day 1": {
+        "8.30 AM To 9.20 AM": "EVS-JB",
+        "9.20 AM To 10.10 AM": "LANG -906",
+        "10.10 AM To 11.00 AM": "Maths",
+        "11.00 AM To 11.50 AM": "BREAK",
+        "11.50 AM To 12.40 PM": "ICD\n\nSK",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "CDC",
+        "2.15 PM To 3.00 PM": "CDC",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 2": {
+        "8.30 AM To 9.20 AM": "Maths",
+        "9.20 AM To 10.10 AM": "LANG -906",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "ICD LAB\nPLY 3\nSK",
+        "11.50 AM To 12.40 PM": "ENG",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "DS LAB\nPLY2\nJK",
+        "2.15 PM To 3.00 PM": "DS LAB\nPLY2\nJK",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 3": {
+        "8.30 AM To 9.20 AM": "LANG -901",
+        "9.20 AM To 10.10 AM": "BREAK",
+        "10.10 AM To 11.00 AM": "DS-JK",
+        "11.00 AM To 11.50 AM": "DS-JK",
+        "11.50 AM To 12.40 PM": "Maths",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "ICD\nSK",
+        "2.15 PM To 3.00 PM": "ENG",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 4": {
+        "8.30 AM To 9.20 AM": "EVS-JB",
+        "9.20 AM To 10.10 AM": "LANG -907",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "ICD\nSK",
+        "11.50 AM To 12.40 PM": "ENG",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "Maths",
+        "2.15 PM To 3.00 PM": "DS-JK",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 5": {
+        "8.30 AM To 9.20 AM": "LIB",
+        "9.20 AM To 10.10 AM": "EVS-JB",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "DS LAB (JK)\nPLY2",
+        "11.50 AM To 12.40 PM": "ENG",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "ICD LAB (SK)\nPLY 3",
+        "2.15 PM To 3.00 PM": "ICD LAB (SK)\nPLY 3",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    }
+}

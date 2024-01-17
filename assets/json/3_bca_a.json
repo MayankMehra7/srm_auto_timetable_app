@@ -1,0 +1,57 @@
+{
+    "Day 1": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "PYTHON-MR",
+        "10.10 AM To 11.00 AM": "PROJ(VRE)\n(908)",
+        "11.00 AM To 11.50 AM": "ELE-OOAD-MRS\/IOT-RS",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "PROJ(BN)\n(708)",
+        "1.30 PM To 2.15 PM": "OOAD-MRS\/IOT-RS",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "PROJ(PV)\n(708)"
+    },
+    "Day 2": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "PYTHON-MR",
+        "10.10 AM To 11.00 AM": "OOAD LAB \/IOT LAB\n402\/403",
+        "11.00 AM To 11.50 AM": "OOAD LAB \/IOT LAB\n402\/403",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "PROJ(BN)\n(708)",
+        "1.30 PM To 2.15 PM": "LIB",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "PROJ(GY)"
+    },
+    "Day 3": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "OOAD-MRS\/IOT-RS",
+        "10.10 AM To 11.00 AM": "PROJ(VRE)-402",
+        "11.00 AM To 11.50 AM": "BREAK",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "PYTHON-MR",
+        "1.30 PM To 2.15 PM": "PROJ(AE)",
+        "2.15 PM To 3.00 PM": "Python (MR)- 708",
+        "3.00 PM To 3. 45 PM": "Python (MR) \/ NN- 708"
+    },
+    "Day 4": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "LIB",
+        "10.10 AM To 11.00 AM": "OOAD\/IOT-402\/403",
+        "11.00 AM To 11.50 AM": "OOAD\/IOT-402\/403",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "PROJ(AE)\n(908)",
+        "1.30 PM To 2.15 PM": "PROJ(VRE)",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "PYTHON-MR\n(708)"
+    },
+    "Day 5": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "OOAD-MRS\/IOT-RS",
+        "10.10 AM To 11.00 AM": "Python LAB (MR)\n708",
+        "11.00 AM To 11.50 AM": "Python LAB (MR)\n708",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "PROJ(GY)\n(403)",
+        "1.30 PM To 2.15 PM": "PROJ\n(BN)\n(708)",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "PROJ(PV)\n(402)"
+    }
+}
