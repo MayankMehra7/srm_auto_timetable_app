@@ -1,0 +1,57 @@
+{
+    "Day 1": {
+        "8.30 AM To 9.20 AM": "LIB",
+        "9.20 AM To 10.10 AM": "CDC",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "CDC",
+        "11.50 AM To 12.40 PM": "CN(MP)",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "CN (MP)",
+        "2.15 PM To 3.00 PM": "PYTHON(DG)",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 2": {
+        "8.30 AM To 9.20 AM": "PYTHON LAB (DG)\n708",
+        "9.20 AM To 10.10 AM": "PYTHON LAB (DG)\n708",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "LIB",
+        "11.50 AM To 12.40 PM": "Maths",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "ANDROID\/C#\/ST",
+        "2.15 PM To 3.00 PM": "ANDROID\/C#\/ST\nSAR,PC,BE,RS,RK,MRS,BN\n708,403,402",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 3": {
+        "8.30 AM To 9.20 AM": "R (SL)-  LAB\n908",
+        "9.20 AM To 10.10 AM": "CDC",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "ANDROID\/C#\/ST",
+        "11.50 AM To 12.40 PM": "CN (MP) \nLAB 402",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "Maths",
+        "2.15 PM To 3.00 PM": "PYTHON  (DG)\n",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 4": {
+        "8.30 AM To 9.20 AM": "R (SL)-  LAB\n908",
+        "9.20 AM To 10.10 AM": "Maths",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "CN (MP)",
+        "11.50 AM To 12.40 PM": "LIB",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "ANDROID\/C#\/ST",
+        "2.15 PM To 3.00 PM": "ANDROID\/C#\/ST\nSAR,PC,BE,RS,RK,MRS,BN\n708,403,402",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 5": {
+        "8.30 AM To 9.20 AM": "CN (MP) \nLAB 403",
+        "9.20 AM To 10.10 AM": "LIB",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "Maths",
+        "11.50 AM To 12.40 PM": "PYTHON\n(DG)",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "LIB",
+        "2.15 PM To 3.00 PM": "LIB",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    }
+}

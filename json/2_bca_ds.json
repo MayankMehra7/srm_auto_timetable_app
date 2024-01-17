@@ -1,0 +1,57 @@
+{
+    "Day 1": {
+        "8.30 AM To 9.20 AM": "DLE-SL",
+        "9.20 AM To 10.10 AM": "ICV-SAR",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "DLE LAB\nPLY 2 SL",
+        "11.50 AM To 12.40 PM": "DLE LAB\nPLY 2 SL",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "ICV-VRE",
+        "2.15 PM To 3.00 PM": "WBD-JK",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 2": {
+        "8.30 AM To 9.20 AM": "ICV-VRE",
+        "9.20 AM To 10.10 AM": "Lib",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "DSE-BE",
+        "11.50 AM To 12.40 PM": "LIB",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "ICV (VRE)  PLY 3 LAB",
+        "2.15 PM To 3.00 PM": "ICV (VRE)  PLY 3 LAB",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 3": {
+        "8.30 AM To 9.20 AM": "CDC",
+        "9.20 AM To 10.10 AM": "CDC",
+        "10.10 AM To 11.00 AM": "DLE-SL",
+        "11.00 AM To 11.50 AM": "BREAK",
+        "11.50 AM To 12.40 PM": "WBD-JK",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "WBD LAB (JK)\nPLY 3 LAB",
+        "2.15 PM To 3.00 PM": "WBD LAB (JK)\nPLY 3 LAB",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 4": {
+        "8.30 AM To 9.20 AM": "DSE-BE",
+        "9.20 AM To 10.10 AM": "WBD-JK",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "Lib",
+        "11.50 AM To 12.40 PM": "DSE-BE",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "DLE-SL",
+        "2.15 PM To 3.00 PM": "DLE-SL",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 5": {
+        "8.30 AM To 9.20 AM": "ICV-SAR",
+        "9.20 AM To 10.10 AM": "WBD-JK",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "DSE LAB (BE) PLY3",
+        "11.50 AM To 12.40 PM": "DSE LAB (BE) PLY3",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "DSE-BE",
+        "2.15 PM To 3.00 PM": "LIB",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "Day 1": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "AL LAB PLY3(RK)",
+        "10.10 AM To 11.00 AM": "AL LAB PLY3(RK)",
+        "11.00 AM To 11.50 AM": "ELE2\/MDS\/DMA\/TSA (MR\/AN\/BE\/AE)",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "DVC LAB\nPLY 2\nNA",
+        "1.30 PM To 2.15 PM": "DVC LAB\nPLY 2\nNA",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "BMPL(JB)"
+    },
+    "Day 2": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "AI(RK)",
+        "10.10 AM To 11.00 AM": "AI(RK)",
+        "11.00 AM To 11.50 AM": "DVC(NA)",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "ELE2\/MDS\/DMA\/ TSA (MR\/AN\/ BE\/AE)",
+        "1.30 PM To 2.15 PM": "DVC(NA)",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "ELEC1\/MLMM\/NLP\/ (VRE\/RT\/ MP\/AN)"
+    },
+    "Day 3": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "ELE2\/MDS\/DMA\/TSA (MR\/AN\/BE\/AE)",
+        "10.10 AM To 11.00 AM": "CDC     Room 423",
+        "11.00 AM To 11.50 AM": "BMPL(JB)  -  423",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "BMPL LAB (JB)\nPLY 3",
+        "1.30 PM To 2.15 PM": "BMPL(JB)-226",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "ELEC1\/MLMM\/NLP\/ (VRE\/RT\/ MP\/AN)"
+    },
+    "Day 4": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "ELEC1\/MLMM\/NLP\/ (VRE\/Sk\/MP\/AN)",
+        "10.10 AM To 11.00 AM": "ELE2\/MDS\/DMA\/TSA(MR\/AN\/BE\/AE)",
+        "11.00 AM To 11.50 AM": "DVC(NA)-    226",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "DVC LAB (NA)\nPLY 1",
+        "1.30 PM To 2.15 PM": "DVC LAB (NA)\nPLY 1",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "BMPL LAB (JB)\nPLY 3"
+    },
+    "Day 5": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "AL LAB PLY3(RK)",
+        "10.10 AM To 11.00 AM": "AL LAB PLY3(RK)",
+        "11.00 AM To 11.50 AM": "AI(RK)",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "BMPL LAB\nPLY 2\nJB",
+        "1.30 PM To 2.15 PM": "BMPL LAB\nPLY 2\nJB",
+        "2.15 PM To 3.00 PM": "ELEC1\/MLMM\/NLP\/(VRE\/RT\/MP\/AN)",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "Day 1": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "PROJ(SA)",
+        "10.10 AM To 11.00 AM": "PYTHON-KK",
+        "11.00 AM To 11.50 AM": "ELE-OOAD-MRS\/IOT-RS",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "PYTHON-KK",
+        "1.30 PM To 2.15 PM": "OOAD-MRS\/IOT-RS",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "PROJ(MRS)\n(403)"
+    },
+    "Day 2": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "PROJ(NA)",
+        "10.10 AM To 11.00 AM": "OOAD\/IOT-402\/403-RS",
+        "11.00 AM To 11.50 AM": "OOAD\/IOT-402\/403-RS",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "PROJ(LS)\n(908)",
+        "1.30 PM To 2.15 PM": "BREAK",
+        "2.15 PM To 3.00 PM": "Python (KK)- 908",
+        "3.00 PM To 3. 45 PM": "Python (KK)- 908"
+    },
+    "Day 3": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "OOAD-MRS\/IOT-RS",
+        "10.10 AM To 11.00 AM": "PYTHON-KK",
+        "11.00 AM To 11.50 AM": "PYTHON-KK",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "PROJ(SB)\n(908)",
+        "1.30 PM To 2.15 PM": "PROJ(MRS)",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "PROJ(BE)\n(403)"
+    },
+    "Day 4": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "LIB",
+        "10.10 AM To 11.00 AM": "OOAD\/IOT-402\/403-LS",
+        "11.00 AM To 11.50 AM": "OOAD\/IOT-402\/403-LS",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "Python (KK)- 708",
+        "1.30 PM To 2.15 PM": "PROJ(NN)",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "PROJ(LS)\n(908)"
+    },
+    "Day 5": {
+        "8.30 AM To 9.20 AM": "BREAK",
+        "9.20 AM To 10.10 AM": "OOAD-MRS\/IOT-RS",
+        "10.10 AM To 11.00 AM": "LIB",
+        "11.00 AM To 11.50 AM": "PROJ(LS)\n(908)",
+        "11.50 AM To 12.40 PM": "LUNCH",
+        "12.40 PM To 1.30 PM": "Python (KK)- 708",
+        "1.30 PM To 2.15 PM": "PROJ(MRS)",
+        "2.15 PM To 3.00 PM": "BREAK",
+        "3.00 PM To 3. 45 PM": "PROJ(BN)"
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "Day 1": {
+        "8.30 AM To 9.20 AM": "LIB",
+        "9.20 AM To 10.10 AM": "CN (DH)\nLAB 908",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "PYTHON LAB (RK)\n708",
+        "11.50 AM To 12.40 PM": "PYTHON LAB (RK)\n708",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "Maths",
+        "2.15 PM To 3.00 PM": "R LAB(AS)\n908",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 2": {
+        "8.30 AM To 9.20 AM": "LIB",
+        "9.20 AM To 10.10 AM": "CN\n(DH)",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "CDC",
+        "11.50 AM To 12.40 PM": "Maths",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "ANDROID\/C#\/ST\nSAR,PC,BE,RS,RK,MRS,BN\n708,403,402",
+        "2.15 PM To 3.00 PM": "ANDROID\/C#\/ST",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 3": {
+        "8.30 AM To 9.20 AM": "LIB",
+        "9.20 AM To 10.10 AM": "CN\n(DH)",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "ANDROID\/C#\/ST",
+        "11.50 AM To 12.40 PM": "CDC",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "PYTHON\n(RK)",
+        "2.15 PM To 3.00 PM": "LIB",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 4": {
+        "8.30 AM To 9.20 AM": "LIB",
+        "9.20 AM To 10.10 AM": "PYTHON\n(RK)",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "CN LAB(DH)\n708",
+        "11.50 AM To 12.40 PM": "Maths",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "ANDROID\/C#\/ST\nSAR,PC,DH,RS,RK,MRS,BN\n708,403,402",
+        "2.15 PM To 3.00 PM": "ANDROID\/C#\/ST",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    },
+    "Day 5": {
+        "8.30 AM To 9.20 AM": "LIB",
+        "9.20 AM To 10.10 AM": "CN\n(DH)",
+        "10.10 AM To 11.00 AM": "BREAK",
+        "11.00 AM To 11.50 AM": "Maths",
+        "11.50 AM To 12.40 PM": "CDC",
+        "12.40 PM To 1.30 PM": "LUNCH",
+        "1.30 PM To 2.15 PM": "PYTHON\n(RK)",
+        "2.15 PM To 3.00 PM": "R(AS) LAB\n908",
+        "3.00 PM To 3. 45 PM": "BREAK"
+    }
+}
