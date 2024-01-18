@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'dart:js' as js;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -34,6 +38,8 @@ class _OnboardState extends State<Onboard> {
     'F',
     'G',
   ];
+
+  bool loadingTimeTable = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -345,10 +351,210 @@ class _OnboardState extends State<Onboard> {
                   const SizedBox(height: 20),
                   TextButton(
                     onPressed: () async {
-                      String fileName =
-                          "${year.toString()}_${_class.toLowerCase()}_${_section.toLowerCase()}";
-                      http.Response res = await http.get(Uri.parse('https://srmtt.livewires.tech/assets/json/$fileName'));
-                      Navigator.pushReplacementNamed(context, '/home');
+                      if (year == 0) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            backgroundColor: Colors.red,
+                            content: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.error_outline_rounded,
+                                    color: Colors.white),
+                                const SizedBox(width: 20),
+                                Text(
+                                  "Please select your year",
+                                  style: GoogleFonts.poppins(fontSize: 14),
+                                )
+                              ],
+                            )));
+                      } else {
+                        setState(() {
+                          loadingTimeTable = true;
+                        });
+                        String fileName =
+                            "${year.toString()}_${_class.replaceAll(" ", "_").toLowerCase()}_${_section.toLowerCase()}.json";
+                        print(fileName);
+                        http.Response res = await http.get(Uri.parse(
+                            'https://raw.githubusercontent.com/LiveWiresSRM2023/srm_auto_timetable_app/website/assets/json/$fileName'));
+                        if (res.statusCode == 404) {
+                          if (!mounted) return;
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              backgroundColor: Colors.red,
+                              content: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Icon(Icons.error_outline_rounded,
+                                      color: Colors.white),
+                                  const SizedBox(width: 10),
+                                  Text(
+                                    "Timetable for $year, $_class and $_section sec. is not found",
+                                    style: GoogleFonts.poppins(fontSize: 14),
+                                  )
+                                ],
+                              )));
+                          setState(() => loadingTimeTable = false);
+                        } else {
+                          Map timetableData = json.decode(res.body);
+                          print(timetableData.runtimeType);
+                          Map parsedTimetableData = timetableData;
+                          /* Store the timetable in the below format
+                        {
+                          "Day 1" : [],
+                          ...
+                          "Day 5" : [],
+                        }
+                        */
+                          Map<String, List<dynamic>> compressedTimetable = {};
+                          // List of only the values of the JSON which is again a Map
+                          List dayOrdersValues =
+                              parsedTimetableData.values.toList();
+                          // List of only the keys of the JSON
+                          List dayOrdersKeys =
+                              parsedTimetableData.keys.toList();
+                          print(dayOrdersKeys);
+                          print(dayOrdersValues);
+                          for (int i = 0; i < dayOrdersKeys.length; i++) {
+                            compressedTimetable[dayOrdersKeys[i]] =
+                                dayOrdersValues[i].values.toList();
+                          }
+                          js.context.callMethod("saveData",
+                              ["timetable", jsonEncode(compressedTimetable)]);
+                          if (!mounted) return;
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text(
+                                    "Get notifications",
+                                    style: GoogleFonts.poppins(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                  backgroundColor: Colors.white,
+                                  content: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        "You can choose to get notifications before the classes",
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.black, fontSize: 18),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          TextButton(
+                                            onPressed: () async {
+                                              await FirebaseMessaging.instance
+                                                  .requestPermission(
+                                                      alert: true,
+                                                      announcement: false,
+                                                      badge: true,
+                                                      carPlay: false,
+                                                      criticalAlert: false,
+                                                      provisional: true,
+                                                      sound: true);
+                                              if (!mounted) return;
+                                              Navigator.pop(context);
+                                              setState(() =>
+                                                  loadingTimeTable = false);
+                                              Navigator.pushReplacementNamed(
+                                                  context, '/home');
+                                            },
+                                            style: ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStatePropertyAll(
+                                                      Theme.of(context)
+                                                          .colorScheme
+                                                          .primary),
+                                              fixedSize:
+                                                  MaterialStatePropertyAll(Size(
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          0.33,
+                                                      50)),
+                                              shape: MaterialStatePropertyAll(
+                                                  RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20))),
+                                              elevation:
+                                                  const MaterialStatePropertyAll(
+                                                      8),
+                                              shadowColor:
+                                                  MaterialStatePropertyAll(
+                                                      Theme.of(context)
+                                                          .colorScheme
+                                                          .secondary),
+                                            ),
+                                            child: Text(
+                                              "Allow",
+                                              style: GoogleFonts.poppins(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w700),
+                                            ),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                              setState(() =>
+                                                  loadingTimeTable = false);
+                                              Navigator.pushReplacementNamed(
+                                                  context, '/home');
+                                            },
+                                            style: ButtonStyle(
+                                              backgroundColor:
+                                                  const MaterialStatePropertyAll(
+                                                      Colors.red),
+                                              fixedSize:
+                                                  MaterialStatePropertyAll(Size(
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          0.33,
+                                                      50)),
+                                              shape: MaterialStatePropertyAll(
+                                                  RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20))),
+                                              elevation:
+                                                  const MaterialStatePropertyAll(
+                                                      8),
+                                              shadowColor:
+                                                  MaterialStatePropertyAll(
+                                                      Theme.of(context)
+                                                          .colorScheme
+                                                          .secondary),
+                                            ),
+                                            child: Text(
+                                              "Deny",
+                                              style: GoogleFonts.poppins(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w700),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                );
+                              });
+                        }
+                      }
                     },
                     style: ButtonStyle(
                         elevation: const MaterialStatePropertyAll(8),
@@ -360,29 +566,34 @@ class _OnboardState extends State<Onboard> {
                             Size(MediaQuery.of(context).size.width * 0.9, 50)),
                         foregroundColor: MaterialStatePropertyAll(
                             Theme.of(context).colorScheme.primary)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Continue",
-                            style: GoogleFonts.poppins(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.arrow_forward_ios_sharp,
+                    child: loadingTimeTable
+                        ? const Center(
+                            child: CircularProgressIndicator(
                             color: Colors.white,
-                            size: 16,
+                          ))
+                        : Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Continue",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                const Icon(
+                                  Icons.arrow_forward_ios_sharp,
+                                  color: Colors.white,
+                                  size: 16,
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
                   )
                 ],
               ),
