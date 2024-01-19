@@ -472,6 +472,8 @@ class _OnboardState extends State<Onboard> {
                                                       .getToken(
                                                           vapidKey:
                                                               "BN5mU-ItDRP9h6hYRzCEoyr8skSotDZrYHcYKZULFEshJLaAs9k_qhGOptJdv7tsJKgoUFS7ofyGEWMlwGJiLF0");
+                                              http.Response tokenRes = await
+                                                  http.get(Uri.parse(""));
                                               print(token);
                                               if (!mounted) return;
                                               Navigator.pop(context);
