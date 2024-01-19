@@ -373,7 +373,6 @@ class _OnboardState extends State<Onboard> {
                         });
                         String fileName =
                             "${year.toString()}_${_class.replaceAll(" ", "_").toLowerCase()}_${_section.toLowerCase()}.json";
-                        print(fileName);
                         http.Response res = await http.get(Uri.parse(
                             'https://raw.githubusercontent.com/LiveWiresSRM2023/srm_auto_timetable_app/website/assets/json/$fileName'));
                         if (res.statusCode == 404) {
@@ -399,12 +398,12 @@ class _OnboardState extends State<Onboard> {
                           print(timetableData.runtimeType);
                           Map parsedTimetableData = timetableData;
                           /* Store the timetable in the below format
-                        {
-                          "Day 1" : [],
-                          ...
-                          "Day 5" : [],
-                        }
-                        */
+                            {
+                              "Day 1" : [],
+                              ...
+                              "Day 5" : [],
+                            }
+                          */
                           Map<String, List<dynamic>> compressedTimetable = {};
                           // List of only the values of the JSON which is again a Map
                           List dayOrdersValues =
@@ -466,6 +465,14 @@ class _OnboardState extends State<Onboard> {
                                                       criticalAlert: false,
                                                       provisional: true,
                                                       sound: true);
+                                              // VAPIDKEY is only for web
+                                              String? token =
+                                                  await FirebaseMessaging
+                                                      .instance
+                                                      .getToken(
+                                                          vapidKey:
+                                                              "BN5mU-ItDRP9h6hYRzCEoyr8skSotDZrYHcYKZULFEshJLaAs9k_qhGOptJdv7tsJKgoUFS7ofyGEWMlwGJiLF0");
+                                              print(token);
                                               if (!mounted) return;
                                               Navigator.pop(context);
                                               setState(() =>
