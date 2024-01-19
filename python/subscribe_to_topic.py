@@ -4,13 +4,15 @@ import os
 
 def main(context):
     if 'timetable_app' not in firebase_admin._apps:
-        key = eval(os.environ['KEY'])
         cred = credentials.Certificate(key)
         firebase_admin.initialize_app(cred, name='timetable_app')
+    key = eval(os.environ['KEY'])
+    context.log(key)
     if (context.req.path == "/"):
         return context.res.json({"msg": "working, use /subscribe to register users"})
     if (context.req.path == "/subscribe"):
         token = context.req.query['token']
+        context.log(token)
         response = messaging.subscribe_to_topic(token, "timetable")
         context.log(response.success_count, 'tokens were subscribed successfully')
         return context.res.json({"msg": "success"}, 200)
