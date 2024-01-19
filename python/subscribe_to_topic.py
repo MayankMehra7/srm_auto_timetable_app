@@ -3,10 +3,10 @@ from firebase_admin import credentials, messaging
 import os
 
 def main(context):
+    key = eval(os.environ['KEY'])
     if 'timetable_app' not in firebase_admin._apps:
         cred = credentials.Certificate(key)
         firebase_admin.initialize_app(cred, name='timetable_app')
-    key = eval(os.environ['KEY'])
     context.log(key)
     if (context.req.path == "/"):
         return context.res.json({"msg": "working, use /subscribe to register users"})
