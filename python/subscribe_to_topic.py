@@ -19,7 +19,7 @@ def main(context):
         token = context.req.query['token']
         context.log(token)
         response = messaging.subscribe_to_topic(token, "timetable")
-        context.log(response.success_count, 'tokens were subscribed successfully')
+        context.log('tokens were subscribed successfully')
         return context.res.json({"msg": "success"}, 200)
     return context.res.json({"msg": "invalid path"}, 400)
 
