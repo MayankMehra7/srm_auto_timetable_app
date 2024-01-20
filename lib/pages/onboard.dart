@@ -8,6 +8,7 @@ import 'dart:js' as js;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Onboard extends StatefulWidget {
   const Onboard({super.key});
@@ -435,6 +436,9 @@ class _OnboardState extends State<Onboard> {
                           }
                           js.context.callMethod("saveData",
                               ["timetable", jsonEncode(compressedTimetable)]);
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          
                           if (!mounted) return;
                           showDialog(
                               context: context,
@@ -534,6 +538,7 @@ class _OnboardState extends State<Onboard> {
                                                           ],
                                                         )));
                                               }
+                                              prefs.setBool("onboard", true);
                                               if (!mounted) return;
                                               Navigator.pop(context);
                                               setState(() =>
@@ -577,6 +582,7 @@ class _OnboardState extends State<Onboard> {
                                           ),
                                           TextButton(
                                             onPressed: () {
+                                              prefs.setBool("onboard", true);
                                               Navigator.pop(context);
                                               setState(() =>
                                                   loadingTimeTable = false);

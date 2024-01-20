@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'dart:js' as js;
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:calendar_view/calendar_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -20,63 +21,7 @@ class _HomeState extends State<Home> {
   // TODO: implement FCM notification listner subscriber
   // TODO: implement home UI
 
-  Map dummyData = {
-    "Day 1": [
-      "Class 1",
-      "Class 2",
-      "Class 3",
-      "Class 4",
-      "Class 5",
-      "Class 6",
-      "Class 7",
-      "Class 8",
-      "Class 9"
-    ],
-    "Day 2": [
-      "Class 1",
-      "Class 2",
-      "Class 3",
-      "Class 4",
-      "Class 5",
-      "Class 6",
-      "Class 7",
-      "Class 8",
-      "Class 9"
-    ],
-    "Day 3": [
-      "Class 1",
-      "Class 2",
-      "Class 3",
-      "Class 4",
-      "Class 5",
-      "Class 6",
-      "Class 7",
-      "Class 8",
-      "Class 9"
-    ],
-    "Day 4": [
-      "Class 1",
-      "Class 2",
-      "Class 3",
-      "Class 4",
-      "Class 5",
-      "Class 6",
-      "Class 7",
-      "Class 8",
-      "Class 9"
-    ],
-    "Day 5": [
-      "Class 1",
-      "Class 2",
-      "Class 3",
-      "Class 4",
-      "Class 5",
-      "Class 6",
-      "Class 7",
-      "Class 8",
-      "Class 9"
-    ],
-  };
+  Map dummyData = {};
   final List<String> startTimes = [
     "8:30",
     "9:20",
@@ -127,6 +72,18 @@ class _HomeState extends State<Home> {
     }
   }
 
+  getTimetableStringFromLocalStorage() async {
+    String timetableString =
+        await js.context.callMethod('getTimetableStringFromLocalStorage');
+    setState(() {
+      dummyData = json.decode(timetableString);
+    });
+    print('----dummyData');
+    print(dummyData);
+    print(dayOrder);
+    print(dummyData[dayOrder]);
+  }
+
   getDayorder(DateTime selectedDate) async {
     String day = "${selectedDate.day}";
     String month = "${selectedDate.month}";
@@ -174,6 +131,7 @@ class _HomeState extends State<Home> {
     super.initState();
     getDayorder(DateTime.now());
     checkAuth();
+    getTimetableStringFromLocalStorage();
   }
 
   @override
@@ -181,11 +139,13 @@ class _HomeState extends State<Home> {
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Theme.of(context).colorScheme.primary,
-        body: SingleChildScrollView(
-            child: Column(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(15.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -196,14 +156,14 @@ class _HomeState extends State<Home> {
                         text: "Hey,\n",
                         style: GoogleFonts.poppins(
                             color: Colors.white,
-                            fontSize: 30,
+                            fontSize: 35,
                             fontWeight: FontWeight.bold)),
                     TextSpan(
                       text: FirebaseAuth.instance.currentUser!.displayName!
                           .split('(')[0],
                       style: GoogleFonts.poppins(
                           color: Theme.of(context).colorScheme.tertiary,
-                          fontSize: 25,
+                          fontSize: 35,
                           fontWeight: FontWeight.bold),
                     )
                   ])),
@@ -238,7 +198,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             Container(
-              height: 250,
+              height: MediaQuery.of(context).size.height * 0.45,
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primary,
               ),
@@ -316,7 +276,9 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
+            const Spacer(),
             Container(
+              // height: MediaQuery.of(context).size.height * 0.45,
               decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -400,90 +362,76 @@ class _HomeState extends State<Home> {
                   const SizedBox(height: 5),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Container(
-                        height: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(periodHour,
-                                style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.white,
-                                    fontSize: 30)),
-                            const SizedBox(width: 50),
-                            Text('$startTime -- $endTime',
-                                style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.bold,
-                                    color:
-                                        Theme.of(context).colorScheme.secondary,
-                                    fontSize: 20)),
-                          ],
-                        )),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
                     child: SizedBox(
                       height: 150,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: periodHours.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(
-                                left: 4, right: 4, top: 10, bottom: 10),
-                            child: Container(
-                                height: 150,
-                                width: 300,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
+                      child: dayOrder == "Holiday 🛌"
+                          ? Text(
+                              "You can sleep well today,\n Finally a well deserved holiday!",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.poppins(
                                   color: Theme.of(context).colorScheme.primary,
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Row(
-                                    children: [
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(periodHours[index],
-                                              style: GoogleFonts.poppins(
-                                                  fontWeight: FontWeight.normal,
-                                                  color: Colors.white,
-                                                  fontSize: 30)),
-                                          const SizedBox(width: 50),
-                                          Text(
-                                              '${startTimes[index]} -- ${endTimes[index]}',
-                                              style: GoogleFonts.poppins(
-                                                  fontWeight: FontWeight.normal,
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .secondary,
-                                                  fontSize: 20)),
-                                        ],
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w700),
+                            )
+                          : ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              itemCount: dummyData[dayOrder].length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 4, right: 4, top: 10, bottom: 10),
+                                  child: Container(
+                                      height: 150,
+                                      width: 300,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
                                       ),
-                                      const SizedBox(width: 100),
-                                      const Icon(Icons.timer,
-                                          color: Colors.white),
-                                    ],
-                                  ),
-                                )),
-                          );
-                        },
-                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(15.0),
+                                        child: Row(
+                                          children: [
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(dummyData[dayOrder][index],
+                                                    style: GoogleFonts.poppins(
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        color: Colors.white,
+                                                        fontSize: 30)),
+                                                const SizedBox(width: 50),
+                                                Text(
+                                                    '${startTimes[index]} -- ${endTimes[index]}',
+                                                    style: GoogleFonts.poppins(
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        color: Theme.of(context)
+                                                            .colorScheme
+                                                            .secondary,
+                                                        fontSize: 20)),
+                                              ],
+                                            ),
+                                            const SizedBox(width: 100),
+                                            const Icon(Icons.timer,
+                                                color: Colors.white),
+                                          ],
+                                        ),
+                                      )),
+                                );
+                              },
+                            ),
                     ),
                   ),
                 ],
               ),
             ),
           ],
-        )));
+        ));
   }
 }
