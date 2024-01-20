@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:appwrite/appwrite.dart';
+import 'package:appwrite/models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:http/http.dart' as http;
@@ -93,29 +95,35 @@ class _HomeState extends State<Home> {
     }
   }
 
-  getDayorder() async {
-    String day = "${DateTime.now().day}";
-    String month = "${DateTime.now().month}";
-    String year = DateTime.now().year.toString().substring(2);
-    if (DateTime.now().day < 10) {
-      day = "0${DateTime.now().day}";
+  getDayorder(DateTime selectedDate) async {
+    String day = "${selectedDate.day}";
+    String month = "${selectedDate.month}";
+    String year = selectedDate.year.toString().substring(2);
+    if (selectedDate.day < 10) {
+      day = "0${selectedDate.day}";
     }
-    if (DateTime.now().month < 10) {
-      month = "0${DateTime.now().month}";
+    if (selectedDate.month < 10) {
+      month = "0${selectedDate.month}";
     }
     String date = "$day-$month-$year";
-    http.Response dayOrderRes = await http.get(Uri.parse(
-        "https://get-day-order.livewires.tech/dayorder?date=$date"));
+    Client client = Client();
+    client
+      ..setEndpoint('https://cloud.appwrite.io/v1')
+      ..setProject("65a4fa1564de7f6869d7");
+    Functions function = Functions(client);
+    Execution result = await function.createExecution(
+        path: '/dayorder?date=$date', functionId: '65ab8e5e3cef04e16bf1');
     setState(() {
-      dayOrder = json.decode(dayOrderRes.body)['msg'];
+      dayOrder = json.decode(result.responseBody)["msg"] == "nothing"
+          ? "Holiday 🛌"
+          : json.decode(result.responseBody)["msg"];
     });
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    // getDayorder();
+    getDayorder(DateTime.now());
     checkAuth();
   }
 
@@ -242,6 +250,7 @@ class _HomeState extends State<Home> {
                   onCellTap: (events, date) {
                     // Implement callback when user taps on a cell.
                     print(date);
+                    getDayorder(date);
                     setState(() {
                       selectedDate = date;
                     });

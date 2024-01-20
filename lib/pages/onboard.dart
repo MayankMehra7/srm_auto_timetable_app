@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:appwrite/appwrite.dart';
+import 'package:appwrite/models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'dart:js' as js;
@@ -486,73 +488,21 @@ class _OnboardState extends State<Onboard> {
                                                       .getToken(
                                                           vapidKey:
                                                               "BN5mU-ItDRP9h6hYRzCEoyr8skSotDZrYHcYKZULFEshJLaAs9k_qhGOptJdv7tsJKgoUFS7ofyGEWMlwGJiLF0");
-                                              try {
-                                                http.Response tokenRes =
-                                                    await http.get(Uri.parse(
-                                                        "https://subscribe-to-topic.livewires.tech/subscribe?token=$token"));
-                                                if (tokenRes.statusCode !=
-                                                    200) {
-                                                  if (!mounted) return;
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(SnackBar(
-                                                          backgroundColor:
-                                                              Colors.red,
-                                                          content: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .start,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              const Icon(
-                                                                  Icons
-                                                                      .error_outline_rounded,
-                                                                  color: Colors
-                                                                      .white),
-                                                              const SizedBox(
-                                                                  width: 20),
-                                                              Text(
-                                                                "There was an error, we are working on that.",
-                                                                style: GoogleFonts
-                                                                    .poppins(
-                                                                        fontSize:
-                                                                            14),
-                                                              )
-                                                            ],
-                                                          )));
-                                                }
-                                              } catch (e) {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(SnackBar(
-                                                        backgroundColor:
-                                                            Colors.red,
-                                                        content: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            const Icon(
-                                                                Icons
-                                                                    .error_outline_rounded,
-                                                                color: Colors
-                                                                    .white),
-                                                            const SizedBox(
-                                                                width: 20),
-                                                            Text(
-                                                              "Unable to register for notifications",
-                                                              style: GoogleFonts
-                                                                  .poppins(
-                                                                      fontSize:
-                                                                          14),
-                                                            )
-                                                          ],
-                                                        )));
-                                              }
-                                              print(token);
+                                              Client client = Client();
+                                              client
+                                                ..setEndpoint(
+                                                    'https://cloud.appwrite.io/v1')
+                                                ..setProject(
+                                                    "65a4fa1564de7f6869d7");
+                                              Functions function =
+                                                  Functions(client);
+                                              Execution result = await
+                                                  function.createExecution(
+                                                      path:
+                                                          '/subscribe?token=$token',
+                                                      functionId:
+                                                          '65aaa78aec4d46f722cf');
+                                              print(result.responseBody);
                                               if (!mounted) return;
                                               Navigator.pop(context);
                                               setState(() =>
