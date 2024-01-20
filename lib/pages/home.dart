@@ -77,6 +77,40 @@ class _HomeState extends State<Home> {
       "Class 9"
     ],
   };
+  final List<String> startTimes = [
+    "8:30",
+    "9:20",
+    "10:10",
+    "11:00",
+    "12:00",
+    "12:50",
+    "1:40",
+    "2:30",
+    "3:20",
+  ];
+
+  final List<String> endTimes = [
+    "9:20",
+    "10:10",
+    "11:00",
+    "11:50",
+    "12:50",
+    "1:40",
+    "2:30",
+    "3:20",
+    "4:10",
+  ];
+  final List<String> periodHours = [
+    "Period 1",
+    "Period 2",
+    "Period 3",
+    "Period 4",
+    "Period 5",
+    "Period 6",
+    "Period 7",
+    "Period 8",
+    "Period 9",
+  ];
 
   String tC = "Today";
   String dayOrder = "Day 1";
@@ -104,8 +138,8 @@ class _HomeState extends State<Home> {
       month = "0${DateTime.now().month}";
     }
     String date = "$day-$month-$year";
-    http.Response dayOrderRes = await http.get(Uri.parse(
-        "https://get-day-order.livewires.tech/dayorder?date=$date"));
+    http.Response dayOrderRes = await http.get(
+        Uri.parse("https://get-day-order.livewires.tech/dayorder?date=$date"));
     setState(() {
       dayOrder = json.decode(dayOrderRes.body)['msg'];
     });
@@ -142,42 +176,46 @@ class _HomeState extends State<Home> {
                             fontSize: 30,
                             fontWeight: FontWeight.bold)),
                     TextSpan(
-                        text: FirebaseAuth.instance.currentUser!.displayName!
-                            .split('(')[0],
-                        style: GoogleFonts.poppins(
-                            color: Theme.of(context).colorScheme.tertiary,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold))
+                      text: FirebaseAuth.instance.currentUser!.displayName!
+                          .split('(')[0],
+                      style: GoogleFonts.poppins(
+                          color: Theme.of(context).colorScheme.tertiary,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),
+                    )
                   ])),
                   const Spacer(),
-                  Container(
-                    height: 60,
-                    width: 60,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                            color: Theme.of(context).colorScheme.tertiary,
-                            width: 4),
-                        // boxShadow: [
-                        //   BoxShadow(
-                        //       color: Theme.of(context)
-                        //           .colorScheme
-                        //           .tertiary
-                        //           .withOpacity(0.6),
-                        //       blurRadius: 3,
-                        //       spreadRadius: 3,
-                        //       offset: const Offset(0, 0))
-                        // ],
-                        image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(
-                                FirebaseAuth.instance.currentUser!.photoURL!))),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 60,
+                      width: 60,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                              color: Theme.of(context).colorScheme.tertiary,
+                              width: 4),
+                          // boxShadow: [
+                          //   BoxShadow(
+                          //       color: Theme.of(context)
+                          //           .colorScheme
+                          //           .tertiary
+                          //           .withOpacity(0.6),
+                          //       blurRadius: 3,
+                          //       spreadRadius: 3,
+                          //       offset: const Offset(0, 0))
+                          // ],
+                          image: DecorationImage(
+                              fit: BoxFit.fill,
+                              image: NetworkImage(FirebaseAuth
+                                  .instance.currentUser!.photoURL!))),
+                    ),
                   ),
                 ],
               ),
             ),
             Container(
-              height: 300,
+              height: 250,
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primary,
               ),
@@ -263,112 +301,7 @@ class _HomeState extends State<Home> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // SizedBox(
-                  //   height: 160,
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     crossAxisAlignment: CrossAxisAlignment.center,
-                  //     children: [
-                  //       Padding(
-                  //           padding: const EdgeInsets.only(left: 4.0, right: 4),
-                  //           child: RichText(
-                  //             text: TextSpan(children: [
-                  //               TextSpan(
-                  //                   text: "Hello,\n",
-                  //                   style: GoogleFonts.poppins(
-                  //                     fontWeight: FontWeight.bold,
-                  //                     fontSize: 24,
-                  //                     color: Theme.of(context).colorScheme.tertiary,
-                  //                   )),
-                  //               TextSpan(
-                  //                   text: FirebaseAuth
-                  //                       .instance.currentUser!.displayName!
-                  //                       .split("(")
-                  //                       .first,
-                  //                   style: GoogleFonts.poppins(
-                  //                       fontWeight: FontWeight.bold,
-                  //                       fontSize: 28,
-                  //                       color:
-                  //                           Theme.of(context).colorScheme.tertiary))
-                  //             ]),
-                  //           )),
-                  //       const SizedBox(
-                  //         height: 10,
-                  //       ),
-                  //       Container(
-                  //         height: 80,
-                  //         width: 100,
-                  //         decoration: BoxDecoration(
-                  //             shape: BoxShape.circle,
-                  //             border: Border.all(
-                  //                 color: Theme.of(context).colorScheme.tertiary,
-                  //                 width: 4),
-                  //             image: DecorationImage(
-                  //                 fit: BoxFit.fill,
-                  //                 image: NetworkImage(
-                  //                     FirebaseAuth.instance.currentUser!.photoURL!))),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                   const SizedBox(height: 10),
-                  // //buttons today and calender
-                  // Padding(
-                  //   padding: const EdgeInsets.all(8.0),
-                  //   child: Wrap(
-                  //     alignment: WrapAlignment.start,
-                  //     direction: Axis.horizontal,
-                  //     children: List.generate(2, (index) {
-                  //       String t = "Today";
-                  //       index == 0 ? t = "Today" : t = "Calender";
-                  //       return Padding(
-                  //         padding: const EdgeInsets.all(5.0),
-                  //         child: TextButton(
-                  //           onPressed: () {
-                  //             setState(() {
-                  //               tC = t;
-                  //             });
-                  //           },
-                  //           style: ButtonStyle(
-                  //             elevation: const MaterialStatePropertyAll(5),
-                  //             fixedSize: MaterialStatePropertyAll(Size(
-                  //                 ((MediaQuery.of(context).size.width * 0.9) -
-                  //                         30) /
-                  //                     3,
-                  //                 40)),
-                  //             backgroundColor: MaterialStatePropertyAll(
-                  //               tC == t
-                  //                   ? Theme.of(context).colorScheme.primary
-                  //                   : Theme.of(context).colorScheme.secondary,
-                  //             ),
-                  //             foregroundColor: MaterialStatePropertyAll(
-                  //               tC == t ? Colors.white : Colors.black,
-                  //             ),
-                  //             shadowColor: MaterialStatePropertyAll(
-                  //               Theme.of(context).colorScheme.secondary,
-                  //             ),
-                  //             shape: MaterialStateProperty.all<
-                  //                 RoundedRectangleBorder>(
-                  //               RoundedRectangleBorder(
-                  //                 borderRadius: BorderRadius.circular(30.0),
-                  //               ),
-                  //             ),
-                  //           ),
-                  //           child: Text(t.toString(),
-                  //               style: GoogleFonts.poppins(
-                  //                 fontSize: 15,
-                  //                 fontWeight: FontWeight.bold,
-                  //                 color:
-                  //                     tC == t ? Colors.white : Colors.grey[800],
-                  //               )),
-                  //         ),
-                  //       );
-                  //     }),
-                  //   ),
-                  // ),
-
-                  // //day text
-
                   Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: RichText(
@@ -377,7 +310,7 @@ class _HomeState extends State<Home> {
                               text: DateFormat('EEEE, ').format(DateTime.now()),
                               style: GoogleFonts.poppins(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 18,
+                                fontSize: 25,
                                 color: Theme.of(context).colorScheme.primary,
                               )),
                           TextSpan(
@@ -385,202 +318,140 @@ class _HomeState extends State<Home> {
                                   DateFormat('d MMMM y').format(DateTime.now()),
                               style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 18,
+                                  fontSize: 25,
                                   color:
                                       Theme.of(context).colorScheme.tertiary))
                         ]),
                       )),
-
-                  //row
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 10.0, top: 8, bottom: 8, right: 8),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Day Order",
-                                style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 38,
-                                  color: Theme.of(context).colorScheme.primary,
-                                )),
-                            const SizedBox(height: 2),
-                            Text(dayOrder,
-                                style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 38,
-                                  color: Theme.of(context).colorScheme.tertiary,
-                                )),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 100,
-                          width: 2,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(startTime,
-                                style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 38,
-                                  color: Theme.of(context).colorScheme.primary,
-                                )),
-                            Center(
-                              child: Container(
-                                height: 20,
-                                width: 2,
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
-                            ),
-                            Text(endTime,
-                                style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 38,
-                                  color: Theme.of(context).colorScheme.primary,
-                                )),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  //container for tt text and notif
+                  //DayOrder and Notif
                   const SizedBox(height: 5),
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Container(
-                      height: 100,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Theme.of(context).colorScheme.secondary,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                    padding: const EdgeInsets.all(15.0),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(dayOrder,
+                              style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 38,
+                                color: Theme.of(context).colorScheme.tertiary,
+                              )),
+                          const SizedBox(width: 150),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text("Timetable",
-                                  textAlign: TextAlign.start,
+                              Switch(
+                                value: isNotif,
+                                onChanged: (value) {
+                                  setState(() {
+                                    isNotif = value;
+                                  });
+                                },
+                                inactiveTrackColor:
+                                    Theme.of(context).colorScheme.primary,
+                                activeColor:
+                                    Theme.of(context).colorScheme.secondary,
+                                inactiveThumbColor:
+                                    Theme.of(context).colorScheme.secondary,
+                                activeTrackColor:
+                                    Theme.of(context).colorScheme.primary,
+                              ),
+                              const SizedBox(height: 2),
+                              Text("Notification",
                                   style: GoogleFonts.poppins(
                                     fontWeight: FontWeight.normal,
-                                    fontSize: 30,
+                                    fontSize: 15,
                                     color:
                                         Theme.of(context).colorScheme.primary,
                                   )),
-                              const SizedBox(width: 70),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Switch(
-                                    value: isNotif,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        isNotif = value;
-                                      });
-                                    },
-                                    inactiveTrackColor:
-                                        Theme.of(context).colorScheme.primary,
-                                    activeColor:
-                                        Theme.of(context).colorScheme.secondary,
-                                    inactiveThumbColor:
-                                        Theme.of(context).colorScheme.secondary,
-                                    activeTrackColor:
-                                        Theme.of(context).colorScheme.primary,
-                                  ),
-                                  const SizedBox(height: 2),
-                                  Text("Notification",
-                                      style: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 15,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                      )),
-                                ],
-                              ),
-                            ]),
-                      ),
-                    ),
+                            ],
+                          ),
+                        ]),
                   ),
-                  //Container for present period and time
+
+                  //Container for period and time
                   const SizedBox(height: 5),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Container(
-                      height: 180,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(periodHour,
-                                  style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 38,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(periodHour,
+                                style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.normal,
                                     color: Colors.white,
-                                  )),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  RichText(
-                                    text: TextSpan(children: [
-                                      TextSpan(
-                                        text: startTime,
-                                        style: GoogleFonts.poppins(
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 38,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
-                                        ),
+                                    fontSize: 30)),
+                            const SizedBox(width: 50),
+                            Text('$startTime -- $endTime',
+                                style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.bold,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                    fontSize: 20)),
+                          ],
+                        )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: SizedBox(
+                      height: 150,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: periodHours.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                                left: 4, right: 4, top: 10, bottom: 10),
+                            child: Container(
+                                height: 150,
+                                width: 300,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Row(
+                                    children: [
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(periodHours[index],
+                                              style: GoogleFonts.poppins(
+                                                  fontWeight: FontWeight.normal,
+                                                  color: Colors.white,
+                                                  fontSize: 30)),
+                                          const SizedBox(width: 50),
+                                          Text(
+                                              '${startTimes[index]} -- ${endTimes[index]}',
+                                              style: GoogleFonts.poppins(
+                                                  fontWeight: FontWeight.normal,
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .secondary,
+                                                  fontSize: 20)),
+                                        ],
                                       ),
-                                      TextSpan(
-                                        text: " -- ",
-                                        style: GoogleFonts.poppins(
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 38,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: endTime,
-                                        style: GoogleFonts.poppins(
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 38,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
-                                        ),
-                                      ),
-                                    ]),
+                                      const SizedBox(width: 100),
+                                      const Icon(Icons.timer,
+                                          color: Colors.white),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            ]),
+                                )),
+                          );
+                        },
                       ),
                     ),
                   ),
