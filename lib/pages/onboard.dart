@@ -40,6 +40,20 @@ class _OnboardState extends State<Onboard> {
   ];
 
   bool loadingTimeTable = false;
+
+  checkAuth() async {
+    if (FirebaseAuth.instance.currentUser == null) {
+      Navigator.pushReplacementNamed(context, '/auth');
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkAuth();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -472,10 +486,10 @@ class _OnboardState extends State<Onboard> {
                                                       .getToken(
                                                           vapidKey:
                                                               "BN5mU-ItDRP9h6hYRzCEoyr8skSotDZrYHcYKZULFEshJLaAs9k_qhGOptJdv7tsJKgoUFS7ofyGEWMlwGJiLF0");
-                                              http.Response tokenRes =
-                                                  await http.get(Uri.parse(
-                                                      "https://65aaa78be063c6bd371a.appwrite.global/subscribe?token=$token"));
                                               try {
+                                                http.Response tokenRes =
+                                                    await http.get(Uri.parse(
+                                                        "https://subscribe-to-topic.livewires.tech/subscribe?token=$token"));
                                                 if (tokenRes.statusCode !=
                                                     200) {
                                                   if (!mounted) return;

@@ -87,6 +87,12 @@ class _HomeState extends State<Home> {
   DateTime selectedDate = DateTime(DateTime.now().year, DateTime.now().month,
       DateTime.now().day, 0, 0, 0, 0, 0);
 
+  checkAuth() async {
+    if (FirebaseAuth.instance.currentUser == null) {
+      Navigator.pushReplacementNamed(context, '/auth');
+    }
+  }
+
   getDayorder() async {
     String day = "${DateTime.now().day}";
     String month = "${DateTime.now().month}";
@@ -99,7 +105,7 @@ class _HomeState extends State<Home> {
     }
     String date = "$day-$month-$year";
     http.Response dayOrderRes = await http.get(Uri.parse(
-        "https://65ab8e5edf7d19ae4ef5.appwrite.global/dayorder?date=$date"));
+        "https://get-day-order.livewires.tech/dayorder?date=$date"));
     setState(() {
       dayOrder = json.decode(dayOrderRes.body)['msg'];
     });
@@ -110,6 +116,7 @@ class _HomeState extends State<Home> {
     // TODO: implement initState
     super.initState();
     // getDayorder();
+    checkAuth();
   }
 
   @override
@@ -120,50 +127,54 @@ class _HomeState extends State<Home> {
         body: SingleChildScrollView(
             child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                RichText(
-                    text: TextSpan(children: [
-                  TextSpan(
-                      text: "Hey, ",
-                      style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold)),
-                  TextSpan(
-                      text: FirebaseAuth.instance.currentUser!.displayName,
-                      style: GoogleFonts.poppins(
-                          color: Theme.of(context).colorScheme.tertiary,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold))
-                ])),
-                const Spacer(),
-                Container(
-                      height: 160,
-                      width: 160,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                              color: Theme.of(context).colorScheme.tertiary,
-                              width: 4),
-                          // boxShadow: [
-                          //   BoxShadow(
-                          //       color: Theme.of(context)
-                          //           .colorScheme
-                          //           .tertiary
-                          //           .withOpacity(0.6),
-                          //       blurRadius: 3,
-                          //       spreadRadius: 3,
-                          //       offset: const Offset(0, 0))
-                          // ],
-                          image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: NetworkImage(FirebaseAuth
-                                  .instance.currentUser!.photoURL!))),
-                    ),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  RichText(
+                      text: TextSpan(children: [
+                    TextSpan(
+                        text: "Hey,\n",
+                        style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold)),
+                    TextSpan(
+                        text: FirebaseAuth.instance.currentUser!.displayName!
+                            .split('(')[0],
+                        style: GoogleFonts.poppins(
+                            color: Theme.of(context).colorScheme.tertiary,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold))
+                  ])),
+                  const Spacer(),
+                  Container(
+                    height: 60,
+                    width: 60,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: Theme.of(context).colorScheme.tertiary,
+                            width: 4),
+                        // boxShadow: [
+                        //   BoxShadow(
+                        //       color: Theme.of(context)
+                        //           .colorScheme
+                        //           .tertiary
+                        //           .withOpacity(0.6),
+                        //       blurRadius: 3,
+                        //       spreadRadius: 3,
+                        //       offset: const Offset(0, 0))
+                        // ],
+                        image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: NetworkImage(
+                                FirebaseAuth.instance.currentUser!.photoURL!))),
+                  ),
+                ],
+              ),
             ),
             Container(
               height: 300,
@@ -176,7 +187,7 @@ class _HomeState extends State<Home> {
                   showBorder: false,
                   controller: EventController(),
                   headerBuilder: (date) => Text(
-                    DateFormat.MMMM().format(date),
+                    "${DateFormat.MMMM().format(date)}, $dayOrder",
                     style: GoogleFonts.poppins(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
