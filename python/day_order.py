@@ -1,7 +1,9 @@
 def main(context):
-    if ('date' in context.req.query):
+    if (context.req.path == "/"):
+        return context.res.json({"msg": "working, use /subscribe to register users"})
+    if (context.req.path == "/dayorder"):
         return context.res.json({"msg" : day_order_data[context.req.query['date']]["do"]})
-    return context.res.json({"msg": "no date provided"})
+    return context.res.json({"msg": "no date provided or invalid path"})
 
 day_order_data = {
     "01-01-24": {
