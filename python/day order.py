@@ -1,6 +1,7 @@
 def main(context):
     if ('date' in context.req.query):
         return context.res.json({"msg" : day_order_data[context.req.query['date']]["do"]})
+    return context.res.json({"msg": "no date provided"})
 
 day_order_data = {
     "01-01-24": {
