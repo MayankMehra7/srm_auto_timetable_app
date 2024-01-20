@@ -153,7 +153,7 @@ class _OnboardState extends State<Onboard> {
                     children: List.generate(4, (index) {
                       int number = index + 1;
                       return Padding(
-                        padding: const EdgeInsets.all(5.0),
+                        padding: const EdgeInsets.all(4.0),
                         child: TextButton(
                           onPressed: () {
                             setState(() {
@@ -210,7 +210,7 @@ class _OnboardState extends State<Onboard> {
                   //Department dropdown
                   Container(
                     width: MediaQuery.of(context).size.width * 0.9,
-                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    padding: const EdgeInsets.only(left: 8, right: 8),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(color: Colors.grey)),
@@ -472,8 +472,8 @@ class _OnboardState extends State<Onboard> {
                                                       .getToken(
                                                           vapidKey:
                                                               "BN5mU-ItDRP9h6hYRzCEoyr8skSotDZrYHcYKZULFEshJLaAs9k_qhGOptJdv7tsJKgoUFS7ofyGEWMlwGJiLF0");
-                                              http.Response tokenRes = await
-                                                  http.get(Uri.parse(""));
+                                              http.Response tokenRes =
+                                                  await http.get(Uri.parse(""));
                                               print(token);
                                               if (!mounted) return;
                                               Navigator.pop(context);
