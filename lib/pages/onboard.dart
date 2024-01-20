@@ -472,8 +472,44 @@ class _OnboardState extends State<Onboard> {
                                                       .getToken(
                                                           vapidKey:
                                                               "BN5mU-ItDRP9h6hYRzCEoyr8skSotDZrYHcYKZULFEshJLaAs9k_qhGOptJdv7tsJKgoUFS7ofyGEWMlwGJiLF0");
+<<<<<<< HEAD
                                               http.Response tokenRes =
                                                   await http.get(Uri.parse(""));
+=======
+                                              // http.Response tokenRes =
+                                              //     await http.get(Uri.parse(
+                                              //         "https://65aaa78be063c6bd371a.appwrite.global/subscribe?token=$token"));
+                                              // if (tokenRes.statusCode != 200) {
+                                              //   ScaffoldMessenger.of(context)
+                                              //       .showSnackBar(SnackBar(
+                                              //           backgroundColor:
+                                              //               Colors.red,
+                                              //           content: Row(
+                                              //             mainAxisAlignment:
+                                              //                 MainAxisAlignment
+                                              //                     .start,
+                                              //             crossAxisAlignment:
+                                              //                 CrossAxisAlignment
+                                              //                     .center,
+                                              //             children: [
+                                              //               const Icon(
+                                              //                   Icons
+                                              //                       .error_outline_rounded,
+                                              //                   color: Colors
+                                              //                       .white),
+                                              //               const SizedBox(
+                                              //                   width: 20),
+                                              //               Text(
+                                              //                 "There was an error, we are working on that.",
+                                              //                 style: GoogleFonts
+                                              //                     .poppins(
+                                              //                         fontSize:
+                                              //                             14),
+                                              //               )
+                                              //             ],
+                                              //           )));
+                                              // }
+>>>>>>> b46f9b1778f731496f84f56b9453a735966df601
                                               print(token);
                                               if (!mounted) return;
                                               Navigator.pop(context);
