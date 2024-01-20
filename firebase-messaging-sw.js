@@ -16,6 +16,9 @@ const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage(function (payload) {
     console.log('[firebase-messaging-sw.js] Received background message ', payload);
+    var index = payload.data.index
+    const timetableData = JSON.parse(localStorage.getItem("timetable"));
+    // timetableData["Day 1"][index]
     // Customize notification here
     const notificationTitle = 'Background Message Title';
     const notificationOptions = {
