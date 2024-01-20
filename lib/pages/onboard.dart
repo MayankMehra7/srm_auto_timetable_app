@@ -488,21 +488,52 @@ class _OnboardState extends State<Onboard> {
                                                       .getToken(
                                                           vapidKey:
                                                               "BN5mU-ItDRP9h6hYRzCEoyr8skSotDZrYHcYKZULFEshJLaAs9k_qhGOptJdv7tsJKgoUFS7ofyGEWMlwGJiLF0");
-                                              Client client = Client();
-                                              client
-                                                ..setEndpoint(
-                                                    'https://cloud.appwrite.io/v1')
-                                                ..setProject(
-                                                    "65a4fa1564de7f6869d7");
-                                              Functions function =
-                                                  Functions(client);
-                                              Execution result = await
-                                                  function.createExecution(
-                                                      path:
-                                                          '/subscribe?token=$token',
-                                                      functionId:
-                                                          '65aaa78aec4d46f722cf');
-                                              print(result.responseBody);
+                                              try {
+                                                Client client = Client();
+                                                client
+                                                  ..setEndpoint(
+                                                      'https://cloud.appwrite.io/v1')
+                                                  ..setProject(
+                                                      "65a4fa1564de7f6869d7");
+                                                Functions function =
+                                                    Functions(client);
+                                                Execution result = await function
+                                                    .createExecution(
+                                                        path:
+                                                            '/subscribe?token=$token',
+                                                        functionId:
+                                                            '65aaa78aec4d46f722cf');
+                                                print(result.responseBody);
+                                              } catch (e) {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                        backgroundColor:
+                                                            Colors.red,
+                                                        content: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            const Icon(
+                                                                Icons
+                                                                    .error_outline_rounded,
+                                                                color: Colors
+                                                                    .white),
+                                                            const SizedBox(
+                                                                width: 20),
+                                                            Text(
+                                                              e.toString(),
+                                                              style: GoogleFonts
+                                                                  .poppins(
+                                                                      fontSize:
+                                                                          14),
+                                                            )
+                                                          ],
+                                                        )));
+                                              }
                                               if (!mounted) return;
                                               Navigator.pop(context);
                                               setState(() =>
