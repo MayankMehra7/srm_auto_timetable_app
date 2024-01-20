@@ -138,18 +138,35 @@ class _HomeState extends State<Home> {
       month = "0${selectedDate.month}";
     }
     String date = "$day-$month-$year";
-    Client client = Client();
-    client
-      ..setEndpoint('https://cloud.appwrite.io/v1')
-      ..setProject("65a4fa1564de7f6869d7");
-    Functions function = Functions(client);
-    Execution result = await function.createExecution(
-        path: '/dayorder?date=$date', functionId: '65ab8e5e3cef04e16bf1');
-    setState(() {
-      dayOrder = json.decode(result.responseBody)["msg"] == "nothing"
-          ? "Holiday 🛌"
-          : json.decode(result.responseBody)["msg"];
-    });
+    try {
+      Client client = Client();
+      client
+        ..setEndpoint('https://cloud.appwrite.io/v1')
+        ..setProject("65a4fa1564de7f6869d7");
+      Functions function = Functions(client);
+      Execution result = await function.createExecution(
+          path: '/dayorder?date=$date', functionId: '65ab8e5e3cef04e16bf1');
+      setState(() {
+        dayOrder = json.decode(result.responseBody)["msg"] == "nothing"
+            ? "Holiday 🛌"
+            : json.decode(result.responseBody)["msg"];
+      });
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.red,
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Icon(Icons.error_outline_rounded, color: Colors.white),
+              const SizedBox(width: 20),
+              Text(
+                e.toString(),
+                style: GoogleFonts.poppins(fontSize: 14),
+              )
+            ],
+          )));
+    }
   }
 
   @override
