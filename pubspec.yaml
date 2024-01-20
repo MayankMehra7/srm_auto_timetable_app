@@ -39,10 +39,12 @@ dependencies:
   firebase_auth: ^4.16.0
   firebase_core: ^2.24.2
   shared_preferences: ^2.2.2
-  http: ^1.2.0
+  http:
   firebase_messaging: ^14.7.10
-  intl: ^0.19.0
+  intl: ^0.18.0
+  flutter_calendar_carousel: ^2.4.2
   calendar_view: ^1.0.4
+  appwrite: ^11.0.1
 
 
 dev_dependencies:

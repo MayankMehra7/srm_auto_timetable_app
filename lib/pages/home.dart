@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -73,12 +77,40 @@ class _HomeState extends State<Home> {
       "Class 9"
     ],
   };
+
   String tC = "Today";
   String dayOrder = "Day 1";
   bool isNotif = false;
   String periodHour = "Period 1";
   String startTime = "8:30";
   String endTime = "9:20";
+  DateTime selectedDate = DateTime(DateTime.now().year, DateTime.now().month,
+      DateTime.now().day, 0, 0, 0, 0, 0);
+
+  getDayorder() async {
+    String day = "${DateTime.now().day}";
+    String month = "${DateTime.now().month}";
+    String year = DateTime.now().year.toString().substring(2);
+    if (DateTime.now().day < 10) {
+      day = "0${DateTime.now().day}";
+    }
+    if (DateTime.now().month < 10) {
+      month = "0${DateTime.now().month}";
+    }
+    String date = "$day-$month-$year";
+    http.Response dayOrderRes = await http.get(Uri.parse(
+        "https://65ab8e5edf7d19ae4ef5.appwrite.global/dayorder?date=$date"));
+    setState(() {
+      dayOrder = json.decode(dayOrderRes.body)['msg'];
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // getDayorder();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +120,51 @@ class _HomeState extends State<Home> {
         body: SingleChildScrollView(
             child: Column(
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                RichText(
+                    text: TextSpan(children: [
+                  TextSpan(
+                      text: "Hey, ",
+                      style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold)),
+                  TextSpan(
+                      text: FirebaseAuth.instance.currentUser!.displayName,
+                      style: GoogleFonts.poppins(
+                          color: Theme.of(context).colorScheme.tertiary,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold))
+                ])),
+                const Spacer(),
+                Container(
+                      height: 160,
+                      width: 160,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                              color: Theme.of(context).colorScheme.tertiary,
+                              width: 4),
+                          // boxShadow: [
+                          //   BoxShadow(
+                          //       color: Theme.of(context)
+                          //           .colorScheme
+                          //           .tertiary
+                          //           .withOpacity(0.6),
+                          //       blurRadius: 3,
+                          //       spreadRadius: 3,
+                          //       offset: const Offset(0, 0))
+                          // ],
+                          image: DecorationImage(
+                              fit: BoxFit.fill,
+                              image: NetworkImage(FirebaseAuth
+                                  .instance.currentUser!.photoURL!))),
+                    ),
+              ],
+            ),
             Container(
               height: 300,
               decoration: BoxDecoration(
@@ -98,46 +175,51 @@ class _HomeState extends State<Home> {
                 child: MonthView(
                   showBorder: false,
                   controller: EventController(),
-                  headerStyle: HeaderStyle(
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Theme.of(context).colorScheme.primary),
-                      headerTextStyle: GoogleFonts.poppins(
-                          fontSize: 9,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white)),
+                  headerBuilder: (date) => Text(
+                    DateFormat.MMMM().format(date),
+                    style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
+                  ),
+                  weekDayBuilder: (day) => const SizedBox(
+                    height: 0,
+                  ),
                   cellBuilder: (date, events, isToday, isInMonth) {
                     // Return your widget to display as month cell.
-                    return Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: Theme.of(context).colorScheme.primary),
-                        borderRadius: BorderRadius.circular(30.0),
-                        color: isInMonth
-                            ? Theme.of(context).colorScheme.primary
-                            : Theme.of(context).colorScheme.primary,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            '${date.day}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: isToday
-                                  ? Theme.of(context).colorScheme.tertiary
-                                  : Colors.white,
-                            ),
-                          ),
-                          if (events.isNotEmpty)
+                    return Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              width: 2,
+                              color: isInMonth
+                                  ? Colors.white
+                                  : Theme.of(context).colorScheme.primary),
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
                             Text(
-                              'Events: ${events.length}',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                color: Colors.white,
+                              '${date.day}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: selectedDate == date
+                                    ? Theme.of(context).colorScheme.tertiary
+                                    : Colors.white,
                               ),
                             ),
-                        ],
+                            if (events.isNotEmpty)
+                              Text(
+                                'Events: ${events.length}',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.white,
+                                ),
+                              ),
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -148,7 +230,10 @@ class _HomeState extends State<Home> {
                   onPageChange: (date, pageIndex) => print("$date, $pageIndex"),
                   onCellTap: (events, date) {
                     // Implement callback when user taps on a cell.
-                    print(events);
+                    print(date);
+                    setState(() {
+                      selectedDate = date;
+                    });
                   },
                   startDay:
                       WeekDays.sunday, // To change the first day of the week.

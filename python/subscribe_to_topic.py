@@ -19,7 +19,10 @@ def main(context):
         token = context.req.query['token']
         context.log(token)
         response = messaging.subscribe_to_topic(token, "timetable")
-        context.log('tokens were subscribed successfully')
+        return context.res.json({"msg": "success"}, 200)
+    if (context.req.path == "/unsubscribe"):
+        token = context.req.query['token']
+        response = messaging.unsubscribe_from_topic(token, "timetable")
         return context.res.json({"msg": "success"}, 200)
     return context.res.json({"msg": "invalid path"}, 400)
 
