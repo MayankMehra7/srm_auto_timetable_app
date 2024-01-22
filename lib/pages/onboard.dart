@@ -434,199 +434,211 @@ class _OnboardState extends State<Onboard> {
                             compressedTimetable[dayOrdersKeys[i]] =
                                 dayOrdersValues[i].values.toList();
                           }
-                          js.context.callMethod("saveData",
-                              ["timetable", jsonEncode(compressedTimetable)]);
+                          js.context.callMethod("sendDataToSW",
+                              [jsonEncode(compressedTimetable)]);
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          
-                          if (!mounted) return;
-                          showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: Text(
-                                    "Get notifications",
-                                    style: GoogleFonts.poppins(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                  backgroundColor: Colors.white,
-                                  content: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        "You can choose to get notifications before the classes",
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.black, fontSize: 18),
-                                      ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          TextButton(
-                                            onPressed: () async {
-                                              await FirebaseMessaging.instance
-                                                  .requestPermission(
-                                                      alert: true,
-                                                      announcement: false,
-                                                      badge: true,
-                                                      carPlay: false,
-                                                      criticalAlert: false,
-                                                      provisional: true,
-                                                      sound: true);
-                                              // VAPIDKEY is only for web
-                                              String? token =
-                                                  await FirebaseMessaging
-                                                      .instance
-                                                      .getToken(
-                                                          vapidKey:
-                                                              "BN5mU-ItDRP9h6hYRzCEoyr8skSotDZrYHcYKZULFEshJLaAs9k_qhGOptJdv7tsJKgoUFS7ofyGEWMlwGJiLF0");
-                                              try {
-                                                Client client = Client();
-                                                client
-                                                  ..setEndpoint(
-                                                      'https://cloud.appwrite.io/v1')
-                                                  ..setProject(
-                                                      "65a4fa1564de7f6869d7");
-                                                Functions function =
-                                                    Functions(client);
-                                                Execution result = await function
-                                                    .createExecution(
-                                                        path:
-                                                            '/subscribe?token=$token',
-                                                        functionId:
-                                                            '65aaa78aec4d46f722cf');
-                                                print(result.responseBody);
-                                              } catch (e) {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(SnackBar(
-                                                        backgroundColor:
-                                                            Colors.red,
-                                                        content: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            const Icon(
-                                                                Icons
-                                                                    .error_outline_rounded,
-                                                                color: Colors
-                                                                    .white),
-                                                            const SizedBox(
-                                                                width: 20),
-                                                            Text(
-                                                              e.toString(),
-                                                              style: GoogleFonts
-                                                                  .poppins(
-                                                                      fontSize:
-                                                                          14),
-                                                            )
-                                                          ],
-                                                        )));
-                                              }
-                                              prefs.setBool("onboard", true);
-                                              if (!mounted) return;
-                                              Navigator.pop(context);
-                                              setState(() =>
-                                                  loadingTimeTable = false);
-                                              Navigator.pushReplacementNamed(
-                                                  context, '/home');
-                                            },
-                                            style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStatePropertyAll(
-                                                      Theme.of(context)
-                                                          .colorScheme
-                                                          .primary),
-                                              fixedSize:
-                                                  MaterialStatePropertyAll(Size(
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          0.33,
-                                                      50)),
-                                              shape: MaterialStatePropertyAll(
-                                                  RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20))),
-                                              elevation:
-                                                  const MaterialStatePropertyAll(
-                                                      8),
-                                              shadowColor:
-                                                  MaterialStatePropertyAll(
-                                                      Theme.of(context)
-                                                          .colorScheme
-                                                          .secondary),
+                          if (await FirebaseMessaging.instance.isSupported()) {
+                            if (!mounted) return;
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: Text(
+                                      "Get notifications",
+                                      style: GoogleFonts.poppins(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    backgroundColor: Colors.white,
+                                    content: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          "You can choose to get notifications before the classes",
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.black,
+                                              fontSize: 18),
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            TextButton(
+                                              onPressed: () async {
+                                                await FirebaseMessaging.instance
+                                                    .requestPermission(
+                                                        alert: true,
+                                                        announcement: false,
+                                                        badge: true,
+                                                        carPlay: false,
+                                                        criticalAlert: false,
+                                                        provisional: true,
+                                                        sound: true);
+                                                // VAPIDKEY is only for web
+                                                String? token =
+                                                    await FirebaseMessaging
+                                                        .instance
+                                                        .getToken(
+                                                            vapidKey:
+                                                                "BN5mU-ItDRP9h6hYRzCEoyr8skSotDZrYHcYKZULFEshJLaAs9k_qhGOptJdv7tsJKgoUFS7ofyGEWMlwGJiLF0");
+                                                try {
+                                                  Client client = Client();
+                                                  client
+                                                    ..setEndpoint(
+                                                        'https://cloud.appwrite.io/v1')
+                                                    ..setProject(
+                                                        "65a4fa1564de7f6869d7");
+                                                  Functions function =
+                                                      Functions(client);
+                                                  Execution result = await function
+                                                      .createExecution(
+                                                          path:
+                                                              '/subscribe?token=$token',
+                                                          functionId:
+                                                              '65aaa78aec4d46f722cf');
+                                                  print(result.responseBody);
+                                                } catch (e) {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(SnackBar(
+                                                          backgroundColor:
+                                                              Colors.red,
+                                                          content: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              const Icon(
+                                                                  Icons
+                                                                      .error_outline_rounded,
+                                                                  color: Colors
+                                                                      .white),
+                                                              const SizedBox(
+                                                                  width: 20),
+                                                              Text(
+                                                                e.toString(),
+                                                                style: GoogleFonts
+                                                                    .poppins(
+                                                                        fontSize:
+                                                                            14),
+                                                              )
+                                                            ],
+                                                          )));
+                                                }
+                                                prefs.setBool("onboard", true);
+                                                if (!mounted) return;
+                                                Navigator.pop(context);
+                                                setState(() =>
+                                                    loadingTimeTable = false);
+                                                Navigator.pushReplacementNamed(
+                                                    context, '/home');
+                                              },
+                                              style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStatePropertyAll(
+                                                        Theme.of(context)
+                                                            .colorScheme
+                                                            .primary),
+                                                fixedSize:
+                                                    MaterialStatePropertyAll(
+                                                        Size(
+                                                            MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.33,
+                                                            50)),
+                                                shape: MaterialStatePropertyAll(
+                                                    RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20))),
+                                                elevation:
+                                                    const MaterialStatePropertyAll(
+                                                        8),
+                                                shadowColor:
+                                                    MaterialStatePropertyAll(
+                                                        Theme.of(context)
+                                                            .colorScheme
+                                                            .secondary),
+                                              ),
+                                              child: Text(
+                                                "Allow",
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              ),
                                             ),
-                                            child: Text(
-                                              "Allow",
-                                              style: GoogleFonts.poppins(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w700),
-                                            ),
-                                          ),
-                                          TextButton(
-                                            onPressed: () {
-                                              prefs.setBool("onboard", true);
-                                              Navigator.pop(context);
-                                              setState(() =>
-                                                  loadingTimeTable = false);
-                                              Navigator.pushReplacementNamed(
-                                                  context, '/home');
-                                            },
-                                            style: ButtonStyle(
-                                              backgroundColor:
-                                                  const MaterialStatePropertyAll(
-                                                      Colors.red),
-                                              fixedSize:
-                                                  MaterialStatePropertyAll(Size(
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          0.33,
-                                                      50)),
-                                              shape: MaterialStatePropertyAll(
-                                                  RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20))),
-                                              elevation:
-                                                  const MaterialStatePropertyAll(
-                                                      8),
-                                              shadowColor:
-                                                  MaterialStatePropertyAll(
-                                                      Theme.of(context)
-                                                          .colorScheme
-                                                          .secondary),
-                                            ),
-                                            child: Text(
-                                              "Deny",
-                                              style: GoogleFonts.poppins(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w700),
-                                            ),
-                                          )
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                );
-                              });
+                                            TextButton(
+                                              onPressed: () {
+                                                prefs.setBool("onboard", true);
+                                                Navigator.pop(context);
+                                                setState(() =>
+                                                    loadingTimeTable = false);
+                                                Navigator.pushReplacementNamed(
+                                                    context, '/home');
+                                              },
+                                              style: ButtonStyle(
+                                                backgroundColor:
+                                                    const MaterialStatePropertyAll(
+                                                        Colors.red),
+                                                fixedSize:
+                                                    MaterialStatePropertyAll(
+                                                        Size(
+                                                            MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.33,
+                                                            50)),
+                                                shape: MaterialStatePropertyAll(
+                                                    RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20))),
+                                                elevation:
+                                                    const MaterialStatePropertyAll(
+                                                        8),
+                                                shadowColor:
+                                                    MaterialStatePropertyAll(
+                                                        Theme.of(context)
+                                                            .colorScheme
+                                                            .secondary),
+                                              ),
+                                              child: Text(
+                                                "Deny",
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              ),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                });
+                          } else {
+                            if (!mounted) return;
+                            Navigator.pushReplacementNamed(context, '/home');
+                          }
                         }
                       }
                     },

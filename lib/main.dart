@@ -1,10 +1,10 @@
+import 'package:ScheduleSRM/pages/auth.dart';
+import 'package:ScheduleSRM/pages/home.dart';
+import 'package:ScheduleSRM/pages/onboard.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:srm_timetable/pages/auth.dart';
-import 'package:srm_timetable/pages/home.dart';
-import 'package:srm_timetable/pages/onboard.dart';
 import 'package:appwrite/appwrite.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'SRM Timetable by LiveWires_',
+      title: 'ScheduleSRM by LiveWires_',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(

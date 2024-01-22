@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:srm_timetable/utils/auth_arc_box.dart';
+import 'package:ScheduleSRM/utils/auth_arc_box.dart';
 
 class Auth extends StatefulWidget {
   const Auth({super.key});

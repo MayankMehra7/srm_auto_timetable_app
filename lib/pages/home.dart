@@ -117,194 +117,225 @@ class _HomeState extends State<Home> {
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Theme.of(context).colorScheme.primary,
-        body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(
-                height: 120,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      RichText(
-                          text: TextSpan(children: [
-                        TextSpan(
-                            text: "Hey,\n",
-                            style: GoogleFonts.poppins(
-                                color: Colors.white,
-                                fontSize: 35,
-                                fontWeight: FontWeight.bold)),
-                        TextSpan(
-                          text: FirebaseAuth.instance.currentUser!.displayName!
-                              .split('(')[0],
-                          style: GoogleFonts.poppins(
-                              color: Theme.of(context).colorScheme.tertiary,
-                              fontSize: 35,
-                              fontWeight: FontWeight.bold),
-                        )
-                      ])),
-                      const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  color: Theme.of(context).colorScheme.tertiary,
-                                  width: 4),
-                              // boxShadow: [
-                              //   BoxShadow(
-                              //       color: Theme.of(context)
-                              //           .colorScheme
-                              //           .tertiary
-                              //           .withOpacity(0.6),
-                              //       blurRadius: 3,
-                              //       spreadRadius: 3,
-                              //       offset: const Offset(0, 0))
-                              // ],
-                              image: DecorationImage(
-                                  fit: BoxFit.fill,
-                                  image: NetworkImage(FirebaseAuth
-                                      .instance.currentUser!.photoURL!))),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.6,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 120,
+                    width: MediaQuery.of(context).size.width,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            RichText(
+                                text: TextSpan(children: [
+                              TextSpan(
+                                  text: "Hey,\n",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.white,
+                                      fontSize: 35,
+                                      fontWeight: FontWeight.bold)),
+                              TextSpan(
+                                text: FirebaseAuth
+                                    .instance.currentUser!.displayName!
+                                    .split('(')[0],
+                                style: GoogleFonts.poppins(
+                                    color:
+                                        Theme.of(context).colorScheme.tertiary,
+                                    fontSize: 35,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ])),
+                            const Spacer(),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Container(
+                                height: 60,
+                                width: 60,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .tertiary,
+                                        width: 4),
+                                    // boxShadow: [
+                                    //   BoxShadow(
+                                    //       color: Theme.of(context)
+                                    //           .colorScheme
+                                    //           .tertiary
+                                    //           .withOpacity(0.6),
+                                    //       blurRadius: 3,
+                                    //       spreadRadius: 3,
+                                    //       offset: const Offset(0, 0))
+                                    // ],
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: NetworkImage(FirebaseAuth
+                                            .instance.currentUser!.photoURL!))),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-              Container(
-                height: 450,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: MonthView(
-                    showBorder: false,
-                    controller: EventController(),
-                    headerBuilder: (date) => Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            "${DateFormat('EE ').format(selectedDate)}, ",
-                            style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25,
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
-                          ),
-                          Text(
-                            "${DateFormat('d').format(selectedDate)}, ",
-                            style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25,
-                              color: Theme.of(context).colorScheme.tertiary,
-                            ),
-                          ),
-                          Text(
-                            dayOrder,
-                            style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25,
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
-                          ),
-                        ],
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary,
                       ),
-                    ),
-                    weekDayBuilder: (day) => const SizedBox(
-                      height: 0,
-                    ),
-                    cellBuilder: (date, events, isToday, isInMonth) {
-                      // Return your widget to display as month cell.
-                      return Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 2,
-                                color: isInMonth
-                                    ? Colors.white
-                                    : Theme.of(context).colorScheme.primary),
-                            borderRadius: BorderRadius.circular(30.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: MonthView(
+                          showBorder: false,
+                          controller: EventController(),
+                          headerBuilder: (date) => Padding(
+                            padding: const EdgeInsets.only(bottom: 10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${DateFormat('MMM').format(selectedDate)}, ",
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 25,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                  ),
+                                ),
+                                Text(
+                                  "${DateFormat('EE').format(selectedDate)}, ",
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 25,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                  ),
+                                ),
+                                Text(
+                                  "${DateFormat('d').format(selectedDate)}, ",
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 25,
+                                    color:
+                                        Theme.of(context).colorScheme.tertiary,
+                                  ),
+                                ),
+                                Text(
+                                  dayOrder,
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 25,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '${date.day}',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: selectedDate == date
-                                      ? Theme.of(context).colorScheme.tertiary
-                                      : Colors.white,
+                          weekDayBuilder: (day) => const SizedBox(
+                            height: 0,
+                          ),
+                          cellBuilder: (date, events, isToday, isInMonth) {
+                            // Return your widget to display as month cell.
+                            return Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 2,
+                                      color: isInMonth
+                                          ? Colors.white
+                                          : Theme.of(context)
+                                              .colorScheme
+                                              .primary),
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      '${date.day}',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: selectedDate == date
+                                            ? Theme.of(context)
+                                                .colorScheme
+                                                .tertiary
+                                            : Colors.white,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
+                            );
+                          },
+                          minMonth: DateTime(2024),
+                          maxMonth: DateTime(2025),
+                          initialMonth: DateTime(2021),
+                          cellAspectRatio: 1,
+                          onPageChange: (date, pageIndex) =>
+                              print("$date, $pageIndex"),
+                          onCellTap: (events, date) {
+                            // Implement callback when user taps on a cell.
+                            print(date);
+                            getDayorder(date);
+                            setState(() {
+                              loadingTimetable = true;
+                              selectedDate = date;
+                            });
+                          },
+                          startDay: WeekDays
+                              .sunday, // To change the first day of the week.
+                          // This callback will only work if cellBuilder is null.
+                          onEventTap: (event, date) => () {},
+                          onDateLongPress: (date) => () {},
                         ),
-                      );
-                    },
-                    minMonth: DateTime(2024),
-                    maxMonth: DateTime(2025),
-                    initialMonth: DateTime(2021),
-                    cellAspectRatio: 1,
-                    onPageChange: (date, pageIndex) =>
-                        print("$date, $pageIndex"),
-                    onCellTap: (events, date) {
-                      // Implement callback when user taps on a cell.
-                      print(date);
-                      getDayorder(date);
-                      setState(() {
-                        loadingTimetable = true;
-                        selectedDate = date;
-                      });
-                    },
-                    startDay:
-                        WeekDays.sunday, // To change the first day of the week.
-                    // This callback will only work if cellBuilder is null.
-                    onEventTap: (event, date) => () {},
-                    onDateLongPress: (date) => () {},
-                  ),
-                ),
-              ),
-              Container(
-                height: 400,
-                width: MediaQuery.of(context).size.width,
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                        topRight: Radius.circular(40))),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0, top: 10),
-                      child: Text(
-                        "Today's timetable",
-                        style: GoogleFonts.poppins(
-                            color: Theme.of(context).colorScheme.tertiary,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w700),
                       ),
                     ),
-                    //DayOrder and Notif
-                    const SizedBox(height: 5),
-                    loadingTimetable
-                        ? Container(
-                            height: 300,
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.4,
+              width: MediaQuery.of(context).size.width,
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40))),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0, top: 10),
+                    child: Text(
+                      "Today's timetable",
+                      style: GoogleFonts.poppins(
+                          color: Theme.of(context).colorScheme.tertiary,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                  loadingTimetable
+                      ? Expanded(
+                          flex: 1,
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -327,11 +358,13 @@ class _HomeState extends State<Home> {
                                 )
                               ],
                             ),
-                          )
-                        : Padding(
-                            padding: const EdgeInsets.all(15.0),
+                          ),
+                        )
+                      : Expanded(
+                          flex: 1,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
                             child: SizedBox(
-                              height: 300,
                               width: MediaQuery.of(context).size.width,
                               child: dayOrder == "Holiday 🛌" ||
                                       timetableData == {}
@@ -470,11 +503,11 @@ class _HomeState extends State<Home> {
                                     ),
                             ),
                           ),
-                  ],
-                ),
+                        ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ));
   }
 }

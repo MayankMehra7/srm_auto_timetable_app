@@ -19,7 +19,7 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="Get your day started with ScheduleSRM">
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -41,6 +41,13 @@
   <script src="saveData.js" defer></script>
   <script src="getStorageData.js" defer></script>
   <script src="flutter.js" defer></script>
+  <script>
+    function sendDataToSW(timetableData) {
+      navigator.serviceWorker.ready.then((registration) => {
+        registration.active.postMessage(timetableData);
+      });
+    }
+  </script>
 </head>
 
 <body>
@@ -50,7 +57,7 @@
           // Service workers are supported. Use them.
           window.addEventListener('load', function () {
             // ADD THIS LINE
-            navigator.serviceWorker.register('/firebase-messaging-sw.js');
+            navigator.serviceWorker.register('/firebase-messaging-sw.js', {scope: '/'});
 
             // Wait for registration to finish before dropping the <script> tag.
             // Otherwise, the browser will load the script multiple times,
