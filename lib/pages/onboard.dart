@@ -1,5 +1,8 @@
-import 'dart:convert';
+// ignore_for_file: avoid_web_libraries_in_flutter
 
+import 'dart:convert';
+import 'dart:js_util' as js_util;
+import 'package:js/js.dart';
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,6 +11,7 @@ import 'dart:js' as js;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:js/js_util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Onboard extends StatefulWidget {
@@ -15,6 +19,9 @@ class Onboard extends StatefulWidget {
   @override
   State<Onboard> createState() => _OnboardState();
 }
+
+@JS('saveData')
+external dynamic saveData(String key, String value);
 
 class _OnboardState extends State<Onboard> {
   int year = 0;
@@ -434,8 +441,14 @@ class _OnboardState extends State<Onboard> {
                             compressedTimetable[dayOrdersKeys[i]] =
                                 dayOrdersValues[i].values.toList();
                           }
-                          js.context.callMethod("sendDataToSW",
-                              [jsonEncode(compressedTimetable)]);
+                          var promise = saveData(
+                              "timetable", jsonEncode(compressedTimetable));
+                          var resultOfSaveData = await promiseToFuture(promise);
+                          print(resultOfSaveData);
+                          js.context.callMethod("saveData",
+                              ["timetable", jsonEncode(compressedTimetable)]);
+                          // js.context.callMethod("sendDataToSW",
+                          //     [jsonEncode(compressedTimetable)]);
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           if (await FirebaseMessaging.instance.isSupported()) {

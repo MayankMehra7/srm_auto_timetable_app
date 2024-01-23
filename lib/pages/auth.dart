@@ -19,7 +19,7 @@ class _AuthState extends State<Auth> {
     if (FirebaseAuth.instance.currentUser != null) {
       if (!mounted) return;
       if (!prefs.containsKey("onboard")) {
-        Navigator.pushNamed(context, '/onboard');
+        Navigator.pushReplacementNamed(context, '/onboard');
       } else {
         Navigator.pushReplacementNamed(context, '/home');
       }

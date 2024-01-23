@@ -45,6 +45,7 @@ dependencies:
   flutter_calendar_carousel: ^2.4.2
   calendar_view: ^1.0.4
   appwrite: ^11.0.1
+  js: ^0.6.7
 
 
 dev_dependencies:

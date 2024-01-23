@@ -38,16 +38,17 @@
     const serviceWorkerVersion = null;
   </script>
   <!-- This script adds the flutter initialization JS code -->
-  <script src="saveData.js" defer></script>
-  <script src="getStorageData.js" defer></script>
+  <script src="local_forage.min.js"></script>
+  <script src="save_data.js" defer></script>
+  <script src="get_storage_data.js" defer></script>
   <script src="flutter.js" defer></script>
-  <script>
+  <!-- <script>
     function sendDataToSW(timetableData) {
       navigator.serviceWorker.ready.then((registration) => {
         registration.active.postMessage(timetableData);
       });
     }
-  </script>
+  </script> -->
 </head>
 
 <body>

@@ -1,5 +1,9 @@
+// ignore_for_file: avoid_web_libraries_in_flutter
+
 import 'dart:convert';
 import 'dart:js' as js;
+import 'dart:js_util' as js_util;
+import 'package:js/js.dart';
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:calendar_view/calendar_view.dart';
+import 'package:js/js_util.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -14,6 +19,9 @@ class Home extends StatefulWidget {
   @override
   State<Home> createState() => _HomeState();
 }
+
+@JS('getTimetableStringFromLocalStorage')
+external dynamic getTimetableStringFromLocalStorage();
 
 class _HomeState extends State<Home> {
   Map timetableData = {};
@@ -46,6 +54,8 @@ class _HomeState extends State<Home> {
   bool loadingTimetable = true;
   DateTime selectedDate = DateTime(DateTime.now().year, DateTime.now().month,
       DateTime.now().day, 0, 0, 0, 0, 0);
+  DateTime selectedMonth = DateTime(DateTime.now().year, DateTime.now().month,
+      DateTime.now().day, 0, 0, 0, 0, 0);
 
   checkAuth() async {
     if (FirebaseAuth.instance.currentUser == null) {
@@ -53,9 +63,9 @@ class _HomeState extends State<Home> {
     }
   }
 
-  getTimetableStringFromLocalStorage() async {
-    String timetableString =
-        await js.context.callMethod('getTimetableStringFromLocalStorage');
+  getTimetableString() async {
+    var promise = getTimetableStringFromLocalStorage();
+    String timetableString = await promiseToFuture(promise);
     setState(() {
       timetableData = json.decode(timetableString);
     });
@@ -109,7 +119,7 @@ class _HomeState extends State<Home> {
     super.initState();
     getDayorder(DateTime.now());
     checkAuth();
-    getTimetableStringFromLocalStorage();
+    getTimetableString();
   }
 
   @override
@@ -131,7 +141,7 @@ class _HomeState extends State<Home> {
                     height: 120,
                     width: MediaQuery.of(context).size.width,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: Row(
@@ -158,32 +168,105 @@ class _HomeState extends State<Home> {
                               )
                             ])),
                             const Spacer(),
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Container(
-                                height: 60,
-                                width: 60,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .tertiary,
-                                        width: 4),
-                                    // boxShadow: [
-                                    //   BoxShadow(
-                                    //       color: Theme.of(context)
-                                    //           .colorScheme
-                                    //           .tertiary
-                                    //           .withOpacity(0.6),
-                                    //       blurRadius: 3,
-                                    //       spreadRadius: 3,
-                                    //       offset: const Offset(0, 0))
-                                    // ],
-                                    image: DecorationImage(
-                                        fit: BoxFit.fill,
-                                        image: NetworkImage(FirebaseAuth
-                                            .instance.currentUser!.photoURL!))),
+                            GestureDetector(
+                              onTap: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                          title: Text(
+                                            "Settings",
+                                            style: GoogleFonts.poppins(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .primary,
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                          backgroundColor: Colors.white,
+                                          content: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              // Include toggle notifcation,
+                                              TextButton(
+                                                onPressed: () {
+                                                  FirebaseAuth.instance
+                                                      .signOut();
+                                                },
+                                                style: ButtonStyle(
+                                                  backgroundColor:
+                                                      const MaterialStatePropertyAll(
+                                                          Colors.red),
+                                                  fixedSize:
+                                                      MaterialStatePropertyAll(
+                                                          Size(
+                                                              MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.8,
+                                                              50)),
+                                                  shape:
+                                                      MaterialStatePropertyAll(
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20))),
+                                                  elevation:
+                                                      const MaterialStatePropertyAll(
+                                                          8),
+                                                  shadowColor:
+                                                      MaterialStatePropertyAll(
+                                                          Theme.of(context)
+                                                              .colorScheme
+                                                              .secondary),
+                                                ),
+                                                child: Text(
+                                                  "Logout",
+                                                  style: GoogleFonts.poppins(
+                                                      color: Colors.white,
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Container(
+                                  height: 60,
+                                  width: 60,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .tertiary,
+                                          width: 4),
+                                      // boxShadow: [
+                                      //   BoxShadow(
+                                      //       color: Theme.of(context)
+                                      //           .colorScheme
+                                      //           .tertiary
+                                      //           .withOpacity(0.6),
+                                      //       blurRadius: 3,
+                                      //       spreadRadius: 3,
+                                      //       offset: const Offset(0, 0))
+                                      // ],
+                                      image: DecorationImage(
+                                          fit: BoxFit.fill,
+                                          image: NetworkImage(FirebaseAuth
+                                              .instance
+                                              .currentUser!
+                                              .photoURL!))),
+                                ),
                               ),
                             ),
                           ],
@@ -208,7 +291,7 @@ class _HomeState extends State<Home> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${DateFormat('MMM').format(selectedDate)}, ",
+                                  "${DateFormat('MMM').format(selectedMonth)}, ",
                                   style: GoogleFonts.poppins(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 25,
@@ -258,7 +341,11 @@ class _HomeState extends State<Home> {
                                   border: Border.all(
                                       width: 2,
                                       color: isInMonth
-                                          ? Colors.white
+                                          ? selectedDate == date
+                                              ? Theme.of(context)
+                                                  .colorScheme
+                                                  .tertiary
+                                              : Colors.white
                                           : Theme.of(context)
                                               .colorScheme
                                               .primary),
@@ -287,8 +374,9 @@ class _HomeState extends State<Home> {
                           maxMonth: DateTime(2025),
                           initialMonth: DateTime(2021),
                           cellAspectRatio: 1,
-                          onPageChange: (date, pageIndex) =>
-                              print("$date, $pageIndex"),
+                          onPageChange: (date, pageIndex) {
+                            setState(() => selectedMonth = date);
+                          },
                           onCellTap: (events, date) {
                             // Implement callback when user taps on a cell.
                             print(date);

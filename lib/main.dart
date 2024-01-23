@@ -58,6 +58,7 @@ class MyApp extends StatelessWidget {
       home: const Auth(),
       routes: {
         '/home': (context) => const Home(),
+        
         '/onboard': (context) => const Onboard()
       },
     );
