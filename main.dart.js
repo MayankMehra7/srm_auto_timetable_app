@@ -43554,49 +43554,49 @@ $S:128}
 A.ag7.prototype={
 $0(){var s=0,r=A.I(t.H),q,p=2,o,n=this,m,l,k,j,i,h,g,f,e,d
 var $async$$0=A.E(function(a,b){if(a===1){o=b
-s=p}while(true)switch(s){case 0:f=$.ck
-e=(f==null?$.ck=$.f1():f).eu(0,"[DEFAULT]")
-f=$.fu()
-A.cw(e,f,!0)
-s=3
-return A.L(A.ar6(new A.dy(e)).gJg().rO(0,!0,!1,!0,!1,!1,!0,!0),$async$$0)
-case 3:p=5
+s=p}while(true)switch(s){case 0:p=4
 h=$.ck
-e=(h==null?$.ck=$.f1():h).eu(0,"[DEFAULT]")
-A.cw(e,f,!0)
+g=(h==null?$.ck=$.f1():h).eu(0,"[DEFAULT]")
+h=$.fu()
+A.cw(g,h,!0)
+s=7
+return A.L(A.ar6(new A.dy(g)).gJg().rO(0,!0,!1,!0,!1,!1,!0,!0),$async$$0)
+case 7:f=$.ck
+g=(f==null?$.ck=$.f1():f).eu(0,"[DEFAULT]")
+A.cw(g,h,!0)
 s=8
-return A.L(A.ar6(new A.dy(e)).gJg().eS("BN5mU-ItDRP9h6hYRzCEoyr8skSotDZrYHcYKZULFEshJLaAs9k_qhGOptJdv7tsJKgoUFS7ofyGEWMlwGJiLF0"),$async$$0)
+return A.L(A.ar6(new A.dy(g)).gJg().eS("BN5mU-ItDRP9h6hYRzCEoyr8skSotDZrYHcYKZULFEshJLaAs9k_qhGOptJdv7tsJKgoUFS7ofyGEWMlwGJiLF0"),$async$$0)
 case 8:m=b
 l=A.als("https://HOSTNAME/v1",!1)
-f=l
-f.yL("https://cloud.appwrite.io/v1")
-f.yP("65a4fa1564de7f6869d7")
+h=l
+h.yL("https://cloud.appwrite.io/v1")
+h.yP("65a4fa1564de7f6869d7")
 k=new A.H3(l)
 s=9
 return A.L(k.qq("65aaa78aec4d46f722cf","/subscribe?token="+A.h(m)),$async$$0)
 case 9:j=b
 A.hI(j.Q)
 p=2
-s=7
+s=6
 break
-case 5:p=4
+case 4:p=3
 d=o
 i=A.a1(d)
-f=n.b.ad(t.Pu)
-f.toString
-f.f.oT(A.zP(null,null,null,B.bL,null,B.S,null,A.eP(A.a([B.e1,B.f_,A.bN(J.bj(i),null,null,null,A.bA().$1$fontSize(14),null,null)],t.E),B.O,B.T,B.P),B.c4,B.cF,null,null,null,null,null,null,null,null,null))
-s=7
+h=n.b.ad(t.Pu)
+h.toString
+h.f.oT(A.zP(null,null,null,B.bL,null,B.S,null,A.eP(A.a([B.e1,B.f_,A.bN(J.bj(i),null,null,null,A.bA().$1$fontSize(14),null,null)],t.E),B.O,B.T,B.P),B.c4,B.cF,null,null,null,null,null,null,null,null,null))
+s=6
 break
-case 4:s=2
+case 3:s=2
 break
-case 7:n.c.LP("Bool","onboard",!0)
-f=n.a
-if(f.c==null){s=1
-break}h=n.b
-A.kr(h,!1).ol(null)
-f.ai(new A.ag6(f))
-f=t.X
-A.r6(h,"/home",f,f)
+case 6:n.c.LP("Bool","onboard",!0)
+h=n.a
+if(h.c==null){s=1
+break}f=n.b
+A.kr(f,!1).ol(null)
+h.ai(new A.ag6(h))
+h=t.X
+A.r6(f,"/home",h,h)
 case 1:return A.G(q,r)
 case 2:return A.F(o,r)}})
 return A.H($async$$0,r)},
