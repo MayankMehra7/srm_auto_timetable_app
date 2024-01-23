@@ -499,6 +499,7 @@ class _OnboardState extends State<Onboard> {
                                                         criticalAlert: false,
                                                         provisional: true,
                                                         sound: true);
+                                                try {
                                                 // VAPIDKEY is only for web
                                                 String? token =
                                                     await FirebaseMessaging
@@ -506,7 +507,6 @@ class _OnboardState extends State<Onboard> {
                                                         .getToken(
                                                             vapidKey:
                                                                 "BN5mU-ItDRP9h6hYRzCEoyr8skSotDZrYHcYKZULFEshJLaAs9k_qhGOptJdv7tsJKgoUFS7ofyGEWMlwGJiLF0");
-                                                try {
                                                   Client client = Client();
                                                   client
                                                     ..setEndpoint(
