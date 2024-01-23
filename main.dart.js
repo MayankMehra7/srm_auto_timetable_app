@@ -43560,13 +43560,13 @@ f=$.fu()
 A.cw(e,f,!0)
 s=3
 return A.L(A.ar6(new A.dy(e)).gJg().rO(0,!0,!1,!0,!1,!1,!0,!0),$async$$0)
-case 3:h=$.ck
+case 3:p=5
+h=$.ck
 e=(h==null?$.ck=$.f1():h).eu(0,"[DEFAULT]")
 A.cw(e,f,!0)
-s=4
+s=8
 return A.L(A.ar6(new A.dy(e)).gJg().eS("BN5mU-ItDRP9h6hYRzCEoyr8skSotDZrYHcYKZULFEshJLaAs9k_qhGOptJdv7tsJKgoUFS7ofyGEWMlwGJiLF0"),$async$$0)
-case 4:m=b
-p=6
+case 8:m=b
 l=A.als("https://HOSTNAME/v1",!1)
 f=l
 f.yL("https://cloud.appwrite.io/v1")
@@ -43577,19 +43577,19 @@ return A.L(k.qq("65aaa78aec4d46f722cf","/subscribe?token="+A.h(m)),$async$$0)
 case 9:j=b
 A.hI(j.Q)
 p=2
-s=8
+s=7
 break
-case 6:p=5
+case 5:p=4
 d=o
 i=A.a1(d)
 f=n.b.ad(t.Pu)
 f.toString
 f.f.oT(A.zP(null,null,null,B.bL,null,B.S,null,A.eP(A.a([B.e1,B.f_,A.bN(J.bj(i),null,null,null,A.bA().$1$fontSize(14),null,null)],t.E),B.O,B.T,B.P),B.c4,B.cF,null,null,null,null,null,null,null,null,null))
-s=8
+s=7
 break
-case 5:s=2
+case 4:s=2
 break
-case 8:n.c.LP("Bool","onboard",!0)
+case 7:n.c.LP("Bool","onboard",!0)
 f=n.a
 if(f.c==null){s=1
 break}h=n.b
