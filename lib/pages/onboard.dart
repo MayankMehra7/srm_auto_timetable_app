@@ -451,8 +451,7 @@ class _OnboardState extends State<Onboard> {
                           //     [jsonEncode(compressedTimetable)]);
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          if (await FirebaseMessaging.instance.isSupported()) {
-                            if (!mounted) return;
+                          if (!mounted) return;
                             showDialog(
                                 context: context,
                                 builder: (context) {
@@ -648,10 +647,12 @@ class _OnboardState extends State<Onboard> {
                                     ),
                                   );
                                 });
-                          } else {
-                            if (!mounted) return;
-                            Navigator.pushReplacementNamed(context, '/home');
-                          }
+                          // if (await FirebaseMessaging.instance.isSupported()) {
+                            
+                          // } else {
+                          //   if (!mounted) return;
+                          //   Navigator.pushReplacementNamed(context, '/home');
+                          // }
                         }
                       }
                     },

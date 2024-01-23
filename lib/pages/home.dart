@@ -195,6 +195,9 @@ class _HomeState extends State<Home> {
                                                 onPressed: () {
                                                   FirebaseAuth.instance
                                                       .signOut();
+                                                  Navigator
+                                                      .pushReplacementNamed(
+                                                          context, '/auth');
                                                 },
                                                 style: ButtonStyle(
                                                   backgroundColor:
