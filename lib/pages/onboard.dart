@@ -419,7 +419,6 @@ class _OnboardState extends State<Onboard> {
                           setState(() => loadingTimeTable = false);
                         } else {
                           Map timetableData = json.decode(res.body);
-                          print(timetableData.runtimeType);
                           Map parsedTimetableData = timetableData;
                           /* Store the timetable in the below format
                             {
@@ -505,6 +504,8 @@ class _OnboardState extends State<Onboard> {
                                                         .getToken(
                                                             vapidKey:
                                                                 "BN5mU-ItDRP9h6hYRzCEoyr8skSotDZrYHcYKZULFEshJLaAs9k_qhGOptJdv7tsJKgoUFS7ofyGEWMlwGJiLF0");
+
+                                                //register to get notifications
                                                 Client client = Client();
                                                 client
                                                   ..setEndpoint(

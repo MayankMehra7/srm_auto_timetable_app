@@ -38,6 +38,15 @@
     const serviceWorkerVersion = null;
   </script>
   <!-- This script adds the flutter initialization JS code -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(function (OneSignal) {
+      OneSignal.init({
+        appId: "976be6de-449f-4868-93b4-f011aa394c64",
+      });
+    });
+  </script>
   <script src="local_forage.min.js"></script>
   <script src="save_data.js" defer></script>
   <script src="get_storage_data.js" defer></script>
@@ -53,22 +62,6 @@
 
 <body>
   <script src="main.dart.js" type="application/javascript"></script>
-  <script>
-       if ('serviceWorker' in navigator) {
-          // Service workers are supported. Use them.
-          window.addEventListener('load', function () {
-            // ADD THIS LINE
-            navigator.serviceWorker.register('/firebase-messaging-sw.js', {scope: '/'});
-
-            // Wait for registration to finish before dropping the <script> tag.
-            // Otherwise, the browser will load the script multiple times,
-            // potentially different versions.
-            var serviceWorkerUrl = 'flutter_service_worker.js?v=' + serviceWorkerVersion;
-
-            //  ...
-          });
-      }
-  </script>
 </body>
 
 </html>
