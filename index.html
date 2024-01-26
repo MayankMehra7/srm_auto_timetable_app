@@ -35,7 +35,7 @@
 
   <script>
     // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = "3181181920";
+    const serviceWorkerVersion = "2169687185";
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
@@ -47,9 +47,6 @@
       });
     });
   </script>
-  <script src="local_forage.min.js"></script>
-  <script src="save_data.js" defer></script>
-  <script src="get_storage_data.js" defer></script>
   <script src="flutter.js" defer></script>
   <!-- <script>
     function sendDataToSW(timetableData) {
@@ -61,7 +58,77 @@
 </head>
 
 <body>
-  <script src="main.dart.js" type="application/javascript"></script>
+  <style>
+    .container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      /* Default Axis is X*/
+      justify-content: center;
+      /* Main Axis */
+      align-items: center;
+      /* Cross Axis */
+    }
+
+    /* HTML: <div class="loader"></div> */
+    .loader {
+      width: 20px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #000;
+      box-shadow: 0 0 0 0 #0004;
+      animation: l2 1.5s infinite linear;
+      position: relative;
+    }
+
+    .loader:before,
+    .loader:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: 0 0 0 0 #0004;
+      animation: inherit;
+      animation-delay: -0.5s;
+    }
+
+    .loader:after {
+      animation-delay: -1s;
+    }
+
+    @keyframes l2 {
+      100% {
+        box-shadow: 0 0 0 40px #0000
+      }
+    }
+  </style>
+  <div class="container">
+    <div id="loading_indicator" class="loader"></div>
+  </div>
+
+  <script>
+    window.addEventListener('load', function (ev) {
+      // Download main.dart.js
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function (engineInitializer) {
+          engineInitializer.initializeEngine().then(function (appRunner) {
+            appRunner.runApp();
+          });
+        }
+      });
+    });
+    window.onload = function () {
+      setTimeout(function () {
+        var loadingIndicator = document.getElementById("loading_indicator");
+        if (loadingIndicator) {
+          loadingIndicator.remove();
+        }
+      }, 10000);
+    };
+  </script>
 </body>
 
 </html>
