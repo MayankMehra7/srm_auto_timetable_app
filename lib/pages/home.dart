@@ -2,6 +2,9 @@
 
 import 'dart:convert';
 
+// import 'dart:js' as js;
+// import 'dart:js_util' as js_util;
+// import 'package:js/js.dart';
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:calendar_view/calendar_view.dart';
@@ -9,8 +12,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:js/js.dart';
-import 'package:js/js_util.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -19,8 +21,8 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-@JS('getTimetableStringFromLocalStorage')
-external dynamic getTimetableStringFromLocalStorage();
+// @JS('getTimetableStringFromLocalStorage')
+// external dynamic getTimetableStringFromLocalStorage();
 
 class _HomeState extends State<Home> {
   Map timetableData = {};
@@ -63,10 +65,12 @@ class _HomeState extends State<Home> {
   }
 
   getTimetableString() async {
-    var promise = getTimetableStringFromLocalStorage();
-    String timetableString = await promiseToFuture(promise);
+    // var promise = getTimetableStringFromLocalStorage();
+    // String timetableString = await promiseToFuture(promise);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String timetableString = prefs.getString("timetable")!;
     setState(() {
-      timetableData = json.decode(timetableString);
+      timetableData = jsonDecode(timetableString);
     });
   }
 

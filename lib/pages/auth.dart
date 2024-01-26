@@ -56,7 +56,7 @@ class _AuthState extends State<Auth> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text("Keep Track\nOf your Class",
+                  Text("ScheduleSRM",
                       textAlign: TextAlign.left,
                       style: GoogleFonts.poppins(
                           fontSize: 30,
@@ -146,7 +146,7 @@ class _AuthState extends State<Auth> {
                     SizedBox(width: 7),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text("Sign in with Google",
+                      child: Text("Sign in with SRM ID",
                           style: GoogleFonts.poppins(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
