@@ -40,7 +40,6 @@ dependencies:
   firebase_core: ^2.24.2
   shared_preferences: ^2.2.2
   http:
-  firebase_messaging: ^14.7.10
   intl: ^0.18.0
   flutter_calendar_carousel: ^2.4.2
   calendar_view: ^1.0.4

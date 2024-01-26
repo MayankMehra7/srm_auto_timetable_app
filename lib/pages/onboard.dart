@@ -1,18 +1,15 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
 
 import 'dart:convert';
-import 'dart:js_util' as js_util;
-import 'package:js/js.dart';
-import 'package:appwrite/appwrite.dart';
-import 'package:appwrite/models.dart';
+// import 'dart:js_util' as js_util;
+// import 'package:js/js.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'dart:js' as js;
+// import 'dart:js' as js;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
-import 'package:js/js_util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:js/js_util.dart';
 
 class Onboard extends StatefulWidget {
   const Onboard({super.key});
@@ -20,8 +17,8 @@ class Onboard extends StatefulWidget {
   State<Onboard> createState() => _OnboardState();
 }
 
-@JS('saveData')
-external dynamic saveData(String key, String value);
+// @JS('saveData')
+// external dynamic saveData(String key, String value);
 
 class _OnboardState extends State<Onboard> {
   int year = 0;
@@ -434,218 +431,21 @@ class _OnboardState extends State<Onboard> {
                           // List of only the keys of the JSON
                           List dayOrdersKeys =
                               parsedTimetableData.keys.toList();
-                          print(dayOrdersKeys);
-                          print(dayOrdersValues);
                           for (int i = 0; i < dayOrdersKeys.length; i++) {
                             compressedTimetable[dayOrdersKeys[i]] =
                                 dayOrdersValues[i].values.toList();
                           }
-                          var promise = saveData(
-                              "timetable", jsonEncode(compressedTimetable));
-                          var resultOfSaveData = await promiseToFuture(promise);
-                          print(resultOfSaveData);
-                          js.context.callMethod("saveData",
-                              ["timetable", jsonEncode(compressedTimetable)]);
-                          // js.context.callMethod("sendDataToSW",
-                          //     [jsonEncode(compressedTimetable)]);
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
+                          prefs.setString(
+                              "timetable", jsonEncode(compressedTimetable));
+                          // var promise = saveData(
+                          //     "timetable", jsonEncode(compressedTimetable));
+                          // await promiseToFuture(promise);
+                          // js.context.callMethod("saveData",
+                          //     ["timetable", jsonEncode(compressedTimetable)]);
                           if (!mounted) return;
-                          showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: Text(
-                                    "Get notifications",
-                                    style: GoogleFonts.poppins(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                  backgroundColor: Colors.white,
-                                  content: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        "You can choose to get notifications before the classes",
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.black, fontSize: 18),
-                                      ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          TextButton(
-                                            onPressed: () async {
-                                              try {
-                                                await FirebaseMessaging.instance
-                                                    .requestPermission(
-                                                        alert: true,
-                                                        announcement: false,
-                                                        badge: true,
-                                                        carPlay: false,
-                                                        criticalAlert: false,
-                                                        provisional: true,
-                                                        sound: true);
-                                                // VAPIDKEY is only for web
-                                                String? token =
-                                                    await FirebaseMessaging
-                                                        .instance
-                                                        .getToken(
-                                                            vapidKey:
-                                                                "BN5mU-ItDRP9h6hYRzCEoyr8skSotDZrYHcYKZULFEshJLaAs9k_qhGOptJdv7tsJKgoUFS7ofyGEWMlwGJiLF0");
-
-                                                //register to get notifications
-                                                Client client = Client();
-                                                client
-                                                  ..setEndpoint(
-                                                      'https://cloud.appwrite.io/v1')
-                                                  ..setProject(
-                                                      "65a4fa1564de7f6869d7");
-                                                Functions function =
-                                                    Functions(client);
-                                                Execution result = await function
-                                                    .createExecution(
-                                                        path:
-                                                            '/subscribe?token=$token',
-                                                        functionId:
-                                                            '65aaa78aec4d46f722cf');
-                                                print(result.responseBody);
-                                              } catch (e) {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(SnackBar(
-                                                        backgroundColor:
-                                                            Colors.red,
-                                                        content: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            const Icon(
-                                                                Icons
-                                                                    .error_outline_rounded,
-                                                                color: Colors
-                                                                    .white),
-                                                            const SizedBox(
-                                                                width: 20),
-                                                            Text(
-                                                              e.toString(),
-                                                              style: GoogleFonts
-                                                                  .poppins(
-                                                                      fontSize:
-                                                                          14),
-                                                            )
-                                                          ],
-                                                        )));
-                                              }
-                                              prefs.setBool("onboard", true);
-                                              if (!mounted) return;
-                                              Navigator.pop(context);
-                                              setState(() =>
-                                                  loadingTimeTable = false);
-                                              Navigator.pushReplacementNamed(
-                                                  context, '/home');
-                                            },
-                                            style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStatePropertyAll(
-                                                      Theme.of(context)
-                                                          .colorScheme
-                                                          .primary),
-                                              fixedSize:
-                                                  MaterialStatePropertyAll(Size(
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          0.33,
-                                                      50)),
-                                              shape: MaterialStatePropertyAll(
-                                                  RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20))),
-                                              elevation:
-                                                  const MaterialStatePropertyAll(
-                                                      8),
-                                              shadowColor:
-                                                  MaterialStatePropertyAll(
-                                                      Theme.of(context)
-                                                          .colorScheme
-                                                          .secondary),
-                                            ),
-                                            child: Text(
-                                              "Allow",
-                                              style: GoogleFonts.poppins(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w700),
-                                            ),
-                                          ),
-                                          TextButton(
-                                            onPressed: () {
-                                              prefs.setBool("onboard", true);
-                                              Navigator.pop(context);
-                                              setState(() =>
-                                                  loadingTimeTable = false);
-                                              Navigator.pushReplacementNamed(
-                                                  context, '/home');
-                                            },
-                                            style: ButtonStyle(
-                                              backgroundColor:
-                                                  const MaterialStatePropertyAll(
-                                                      Colors.red),
-                                              fixedSize:
-                                                  MaterialStatePropertyAll(Size(
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          0.33,
-                                                      50)),
-                                              shape: MaterialStatePropertyAll(
-                                                  RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20))),
-                                              elevation:
-                                                  const MaterialStatePropertyAll(
-                                                      8),
-                                              shadowColor:
-                                                  MaterialStatePropertyAll(
-                                                      Theme.of(context)
-                                                          .colorScheme
-                                                          .secondary),
-                                            ),
-                                            child: Text(
-                                              "Deny",
-                                              style: GoogleFonts.poppins(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w700),
-                                            ),
-                                          )
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                );
-                              });
-                          // if (await FirebaseMessaging.instance.isSupported()) {
-
-                          // } else {
-                          //   if (!mounted) return;
-                          //   Navigator.pushReplacementNamed(context, '/home');
-                          // }
+                          Navigator.pushReplacementNamed(context, "/home");
                         }
                       }
                     },
