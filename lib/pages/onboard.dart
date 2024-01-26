@@ -1,16 +1,16 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
 
 import 'dart:convert';
-import 'dart:js_util' as js_util;
-import 'package:js/js.dart';
+import 'dart:js' as js;
+
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'dart:js' as js;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:js/js.dart';
 import 'package:js/js_util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
