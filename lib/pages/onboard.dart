@@ -437,6 +437,7 @@ class _OnboardState extends State<Onboard> {
                               await SharedPreferences.getInstance();
                           prefs.setString(
                               "timetable", jsonEncode(compressedTimetable));
+                          prefs.setBool("onboard", true);
                           // var promise = saveData(
                           //     "timetable", jsonEncode(compressedTimetable));
                           // await promiseToFuture(promise);

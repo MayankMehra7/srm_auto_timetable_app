@@ -364,9 +364,15 @@ class _HomeState extends State<Home> {
                                   decoration: BoxDecoration(
                                     border: Border.all(
                                         width: 2,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary),
+                                        color: isInMonth
+                                            ? selectedDate == date
+                                                ? Theme.of(context)
+                                                    .colorScheme
+                                                    .tertiary
+                                                : Colors.white
+                                            : Theme.of(context)
+                                                .colorScheme
+                                                .primary),
                                     borderRadius: BorderRadius.circular(30.0),
                                   ),
                                   child: Column(
@@ -425,23 +431,40 @@ class _HomeState extends State<Home> {
           DraggableScrollableSheet(
               initialChildSize: 0.40,
               minChildSize: 0.40,
-              maxChildSize: 0.90, //dayOrder == "Holiday 🛌" ? 0.38 : 0.90
+              maxChildSize: dayOrder == "holiday 🛌" ? 0.38 : 0.90,
+              snap: true,
               builder:
                   (BuildContext context, ScrollController scrollController) {
                 return SingleChildScrollView(
                   controller: scrollController,
                   child: Container(
-                    height: MediaQuery.of(context).size.height,
+                    height: MediaQuery.of(context).size.height * 0.9,
                     width: MediaQuery.of(context).size.width,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                         color: Colors.white, //white10,12,54,60,70 for opacity
-                        borderRadius: BorderRadius.only(
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              offset: const Offset(0, -4),
+                              blurRadius: 3,
+                              spreadRadius: 3)
+                        ],
+                        borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 10),
+                        Center(
+                          child: Container(
+                            width: 100,
+                            height: 8,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.grey),
+                          ),
+                        ),
                         // Padding(
                         //   padding: const EdgeInsets.all(8.0),
                         //   child: Center(
@@ -531,6 +554,7 @@ class _HomeState extends State<Home> {
                                                 ],
                                               )
                                             : ListView.builder(
+                                                controller: ScrollController(),
                                                 scrollDirection: Axis.vertical,
                                                 itemCount: timetableData == {}
                                                     ? 0
