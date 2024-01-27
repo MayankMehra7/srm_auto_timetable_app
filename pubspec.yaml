@@ -45,7 +45,6 @@ dependencies:
   calendar_view: ^1.0.4
   appwrite: ^11.0.1
   js: ^0.6.7
-  firebase_messaging: ^14.7.10
   url_launcher: ^6.2.4
 
 
