@@ -46,6 +46,7 @@ dependencies:
   appwrite: ^11.0.1
   js: ^0.6.7
   firebase_messaging: ^14.7.10
+  url_launcher: ^6.2.4
 
 
 dev_dependencies:
@@ -75,6 +76,13 @@ flutter:
     - assets/images/auth.png
     - assets/images/google.png
     - json/
+    - assets/icons/fb.png
+    - assets/icons/twt.png
+    - assets/icons/ig.png
+    - assets/icons/github.png
+    - assets/icons/github_round.png
+    - assets/icons/lw_light.png
+    - assets/icons/lw_dark.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
