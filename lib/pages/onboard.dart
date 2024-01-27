@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
 
 import 'dart:convert';
-
+import 'dart:js' as js;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -444,6 +444,7 @@ class _OnboardState extends State<Onboard> {
                           // js.context.callMethod("saveData",
                           //     ["timetable", jsonEncode(compressedTimetable)]);
                           if (!mounted) return;
+                          js.context.callMethod("openPopup");
                           Navigator.pushReplacementNamed(context, "/home");
                         }
                       }
