@@ -444,7 +444,6 @@ class _OnboardState extends State<Onboard> {
                           // js.context.callMethod("saveData",
                           //     ["timetable", jsonEncode(compressedTimetable)]);
                           if (!mounted) return;
-                          js.context.callMethod("openPopup");
                           Navigator.pushReplacementNamed(context, "/home");
                         }
                       }

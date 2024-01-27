@@ -44,33 +44,9 @@
     OneSignalDeferred.push(function (OneSignal) {
       OneSignal.init({
         appId: "d43f4e31-c574-4639-b7e6-76ae0e24b8d2",
-        notifyButton: {
-          enable: true
-        },
-        promptOptions: {
-          slidedown: {
-            prompts: [
-              {
-                type: "push", // current types are "push" & "category"
-                autoPrompt: false,
-                text: {
-                  /* limited to 90 characters */
-                  actionMessage: "We'd like to show you notifications for the latest news and updates.",
-                  /* acceptButton limited to 15 characters */
-                  acceptButton: "Allow",
-                  /* cancelButton limited to 15 characters */
-                  cancelButton: "Cancel"
-                },
-              }
-            ]
-          }
-        },
-        serviceWorkerParam: { scope: "/" },
-        serviceWorkerPath: "/OneSignalSDKWorker.js",
       });
     });
   </script>
-  <script src="open_popup.js" defer></script>
   <script src="flutter.js" defer></script>
 </head>
 
