@@ -1,16 +1,32 @@
-# srm_timetable
+# ScheduleSRM
 
-A new Flutter project.
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/LiveWiresSRM2023/srm_auto_timetable_app/.github%2Fworkflows%2Fmain.yml) ![Static Badge](https://img.shields.io/badge/Contributors-2-blue) ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/LiveWiresSRM2023/srm_auto_timetable_app/Main) ![Website](https://img.shields.io/website?url=https%3A%2F%2Fsrmtt.livewires.tech&up_message=online)
 
-## Getting Started
+ScheduleSRM is built and mainted by [LiveWires_](https://livewires.tech)
 
-This project is a starting point for a Flutter application.
+## This repo hosts:
+- `/json` - contains all the timetable in JSON format
+- `/python` - contains all the utility scripts
+    - `day_order.py` - AppWrite function reponsible for returning the current day order
+    - `send_notification.py` - AppWrite function responsible for invoking a notification
+    - `transpose_csv.py` - Utility script to convert CSV (timetable from the Dept.) to JSON
+- `/lib` - contains the src for the web app
+- `/web` - contains the web specific src
 
-A few resources to get you started if this is your first Flutter project:
+## Tech stack:
+- [Flutter](https://flutter.dev) - Frontend
+- [Python](https://python.org) - Backend
+- [OneSignal](https://onesignal.com) - Notification service
+- [AppWrite](https://appwrite.io) - Backend hosting
+- [CloudFlare](https://cloudflare.com) - Frontend hosting
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Get started
+- Clone the repo
+- Setup Flutter environment
+- Run `flutter doctor` to ensure the platform is setup properly
+- Open the Folder and run `flutter run -d chrome` to run debug session in Chrome
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Contributing
+<a href="https://github.com/LiveWiresSRM2023/srm_auto_timetable_app/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=LiveWiresSRM2023/srm_auto_timetable_app" />
+</a>
