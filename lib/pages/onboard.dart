@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
 
 import 'dart:convert';
-import 'dart:js' as js;
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -93,16 +93,6 @@ class _OnboardState extends State<Onboard> {
                           border: Border.all(
                               color: Theme.of(context).colorScheme.tertiary,
                               width: 4),
-                          // boxShadow: [
-                          //   BoxShadow(
-                          //       color: Theme.of(context)
-                          //           .colorScheme
-                          //           .tertiary
-                          //           .withOpacity(0.6),
-                          //       blurRadius: 3,
-                          //       spreadRadius: 3,
-                          //       offset: const Offset(0, 0))
-                          // ],
                           image: DecorationImage(
                               fit: BoxFit.fill,
                               image: NetworkImage(FirebaseAuth
@@ -343,19 +333,21 @@ class _OnboardState extends State<Onboard> {
                         isExpanded: false,
                         style:
                             const TextStyle(fontSize: 15, color: Colors.black),
-                        items: sections
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(
-                              value,
-                              style: GoogleFonts.poppins(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.grey[800]),
-                            ),
-                          );
-                        }).toList(),
+                        // items: sections
+                        //     .map<DropdownMenuItem<String>>((String value) {
+                        //   return DropdownMenuItem<String>(
+                        //     value: value,
+                        //     child: Text(
+                        //       value,
+                        //       style: GoogleFonts.poppins(
+                        //           fontSize: 15,
+                        //           fontWeight: FontWeight.normal,
+                        //           color: Colors.grey[800]),
+                        //     ),
+                        //   );
+                        // }).toList(),
+
+                        items: getSection(),
                         onChanged: (String? sec) {
                           if (sec != null) {
                             setState(() {
@@ -392,6 +384,10 @@ class _OnboardState extends State<Onboard> {
                         });
                         String fileName =
                             "${year.toString()}_${_class.replaceAll(" ", "_").toLowerCase()}_${_section.toLowerCase()}.json";
+                        if (_class == 'BCA DS' && year == 3) {
+                          fileName =
+                              "${year.toString()}_${_class.replaceAll(" ", "_").toLowerCase()}.json";
+                        }
                         http.Response res = await http.get(Uri.parse(
                             'https://raw.githubusercontent.com/LiveWiresSRM2023/srm_auto_timetable_app/website/assets/json/$fileName'));
                         if (res.statusCode == 404) {
@@ -494,5 +490,41 @@ class _OnboardState extends State<Onboard> {
         ),
       ),
     );
+  }
+
+  //3 BCA DS SECTION DROPDOWN
+  List<DropdownMenuItem<String>> getSection() {
+    if (_class == 'BCA DS' && year == 3) {
+      List<String> allowedSectionsForBCA3rdYear = ['A'];
+      return sections
+          .where((section) => allowedSectionsForBCA3rdYear.contains(section))
+          .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(
+            value,
+            style: GoogleFonts.poppins(
+              fontSize: 15,
+              fontWeight: FontWeight.normal,
+              color: Colors.grey[800],
+            ),
+          ),
+        );
+      }).toList();
+    } else {
+      return sections.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(
+            value,
+            style: GoogleFonts.poppins(
+              fontSize: 15,
+              fontWeight: FontWeight.normal,
+              color: Colors.grey[800],
+            ),
+          ),
+        );
+      }).toList();
+    }
   }
 }
