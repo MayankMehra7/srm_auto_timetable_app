@@ -27,12 +27,12 @@ class _OnboardState extends State<Onboard> {
   List<String> departments = [
     'Computer Applications',
   ];
-  List<String> classes = [
-    'BCA',
-    'BCA DS',
-    'MCA',
-    'MSc ADS',
-  ];
+  // List<String> classes = [
+  //   'BCA',
+  //   'BCA DS',
+  //   'MCA',
+  //   'MSc ADS',
+  // ];
 
   bool loadingTimeTable = false;
 
@@ -273,19 +273,20 @@ class _OnboardState extends State<Onboard> {
                         isExpanded: false,
                         style:
                             const TextStyle(fontSize: 15, color: Colors.black),
-                        items: classes
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(
-                              value,
-                              style: GoogleFonts.poppins(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.grey[800]),
-                            ),
-                          );
-                        }).toList(),
+                        // items: classes
+                        //     .map<DropdownMenuItem<String>>((String value) {
+                        //   return DropdownMenuItem<String>(
+                        //     value: value,
+                        //     child: Text(
+                        //       value,
+                        //       style: GoogleFonts.poppins(
+                        //           fontSize: 15,
+                        //           fontWeight: FontWeight.normal,
+                        //           color: Colors.grey[800]),
+                        //     ),
+                        //   );
+                        // }).toList(),
+                        items: getClass(),
                         onChanged: (String? cl) {
                           if (cl != null) {
                             setState(() {
@@ -360,7 +361,7 @@ class _OnboardState extends State<Onboard> {
                         });
                         String fileName =
                             "${year.toString()}_${_class.replaceAll(" ", "_").toLowerCase()}_${_section.toLowerCase()}.json";
-                        if (_class == 'BCA DS' && (year == 3 || year == 2)) {
+                        if (_class == 'BCA DS') {
                           fileName =
                               "${year.toString()}_${_class.replaceAll(" ", "_").toLowerCase()}.json";
                         }
@@ -489,6 +490,34 @@ class _OnboardState extends State<Onboard> {
     }
 
     return allowedSections.map<DropdownMenuItem<String>>((String value) {
+      return DropdownMenuItem<String>(
+        value: value,
+        child: Text(
+          value,
+          style: GoogleFonts.poppins(
+            fontSize: 15,
+            fontWeight: FontWeight.normal,
+            color: Colors.grey[800],
+          ),
+        ),
+      );
+    }).toList();
+  }
+
+  List<DropdownMenuItem<String>> getClass() {
+    List<String> allowedClass = [];
+
+    if (year == 1) {
+      allowedClass = ['BCA', 'MCA', 'MSc ADS', 'BCA DS'];
+    } else if (year == 2) {
+      allowedClass = ['BCA DS', 'BCA'];
+    } else if (year == 3) {
+      allowedClass = ['BCA DS', 'BCA'];
+    } else {
+      allowedClass = [];
+    }
+
+    return allowedClass.map<DropdownMenuItem<String>>((String value) {
       return DropdownMenuItem<String>(
         value: value,
         child: Text(
