@@ -34,16 +34,6 @@ class _OnboardState extends State<Onboard> {
     'MSc ADS',
   ];
 
-  List<String> sections = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-  ];
-
   bool loadingTimeTable = false;
 
   checkAuth() async {
@@ -333,20 +323,6 @@ class _OnboardState extends State<Onboard> {
                         isExpanded: false,
                         style:
                             const TextStyle(fontSize: 15, color: Colors.black),
-                        // items: sections
-                        //     .map<DropdownMenuItem<String>>((String value) {
-                        //   return DropdownMenuItem<String>(
-                        //     value: value,
-                        //     child: Text(
-                        //       value,
-                        //       style: GoogleFonts.poppins(
-                        //           fontSize: 15,
-                        //           fontWeight: FontWeight.normal,
-                        //           color: Colors.grey[800]),
-                        //     ),
-                        //   );
-                        // }).toList(),
-
                         items: getSection(),
                         onChanged: (String? sec) {
                           if (sec != null) {
@@ -384,7 +360,7 @@ class _OnboardState extends State<Onboard> {
                         });
                         String fileName =
                             "${year.toString()}_${_class.replaceAll(" ", "_").toLowerCase()}_${_section.toLowerCase()}.json";
-                        if (_class == 'BCA DS' && year == 3) {
+                        if (_class == 'BCA DS' && (year == 3 || year == 2)) {
                           fileName =
                               "${year.toString()}_${_class.replaceAll(" ", "_").toLowerCase()}.json";
                         }
@@ -492,39 +468,38 @@ class _OnboardState extends State<Onboard> {
     );
   }
 
-  //3 BCA DS SECTION DROPDOWN
+  //Section Dropdown For Each Class
   List<DropdownMenuItem<String>> getSection() {
-    if (_class == 'BCA DS' && year == 3) {
-      List<String> allowedSectionsForBCA3rdYear = ['A'];
-      return sections
-          .where((section) => allowedSectionsForBCA3rdYear.contains(section))
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(
-            value,
-            style: GoogleFonts.poppins(
-              fontSize: 15,
-              fontWeight: FontWeight.normal,
-              color: Colors.grey[800],
-            ),
-          ),
-        );
-      }).toList();
+    List<String> allowedSections = [];
+
+    if (_class == 'BCA' && year == 1) {
+      allowedSections = ['A', 'B', 'C'];
+    } else if (_class == 'MCA' && year == 1) {
+      allowedSections = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+    } else if (_class == 'MSc ADS' && year == 1) {
+      allowedSections = ['A', 'B', 'C', 'D'];
+    } else if (_class == 'BCA' && year == 2) {
+      allowedSections = ['A', 'B', 'C'];
+    } else if (_class == 'BCA' && year == 2) {
+      allowedSections = ['A', 'B', 'C'];
+    } else if (_class == 'BCA' && year == 3) {
+      allowedSections = ['A', 'B'];
     } else {
-      return sections.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(
-            value,
-            style: GoogleFonts.poppins(
-              fontSize: 15,
-              fontWeight: FontWeight.normal,
-              color: Colors.grey[800],
-            ),
-          ),
-        );
-      }).toList();
+      allowedSections = [];
     }
+
+    return allowedSections.map<DropdownMenuItem<String>>((String value) {
+      return DropdownMenuItem<String>(
+        value: value,
+        child: Text(
+          value,
+          style: GoogleFonts.poppins(
+            fontSize: 15,
+            fontWeight: FontWeight.normal,
+            color: Colors.grey[800],
+          ),
+        ),
+      );
+    }).toList();
   }
 }
