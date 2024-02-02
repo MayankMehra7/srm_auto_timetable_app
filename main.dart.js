@@ -43381,9 +43381,10 @@ else if(q==="MCA"&&r.d===1)s=A.a(["A","B","C","D","E","F","G"],t.s)
 else if(q==="MSc ADS"&&r.d===1)s=A.a(["A","B","C","D"],t.s)
 else if(p&&r.d===2)s=A.a(["A","B","C"],t.s)
 else if(p&&r.d===2)s=A.a(["A","B","C"],t.s)
-else{q=p&&r.d===3
+else if(p&&r.d===3)s=A.a(["A","B"],t.s)
+else{q=q==="BCA DS"&&r.d===1
 p=t.s
-s=q?A.a(["A","B"],p):A.a([],p)}q=A.a6(s).i("ad<1,j_<m>>")
+s=q?A.a(["A","B","C"],p):A.a([],p)}q=A.a6(s).i("ad<1,j_<m>>")
 return A.aa(new A.ad(s,new A.agb(),q),!0,q.i("aV.E"))},
 Su(){var s,r,q=this.d
 if(q===1)s=A.a(["BCA","MCA","MSc ADS","BCA DS"],t.s)
@@ -43444,7 +43445,9 @@ case 5:e.al(new A.afZ(e))
 o=B.f.j(e.d)
 n=e.f
 m=o+"_"+A.dc(n," ","_").toLowerCase()+"_"+e.r.toLowerCase()+".json"
-if(e.f==="BCA DS"){o=B.f.j(e.d)
+if(e.f==="BCA DS"){o=e.d
+o=o===2||o===3}else o=!1
+if(o){o=B.f.j(e.d)
 n=e.f
 m=o+"_"+A.dc(n," ","_").toLowerCase()+".json"}s=6
 return A.M(A.aKo(A.dW("https://raw.githubusercontent.com/LiveWiresSRM2023/srm_auto_timetable_app/website/assets/json/"+m,0,null)),$async$$0)
