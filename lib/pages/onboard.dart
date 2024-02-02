@@ -299,6 +299,7 @@ class _OnboardState extends State<Onboard> {
                   ),
                   //enter section text
                   const SizedBox(height: 15),
+                  //if (_class != 'BCA DS' && (year != 1 && year != 2))
                   Text(
                     "Select your section ",
                     style: GoogleFonts.poppins(
@@ -308,6 +309,7 @@ class _OnboardState extends State<Onboard> {
                     textAlign: TextAlign.left,
                   ),
                   //Section dropdown
+                  //if (_class != 'BCA DS' && (year != 1 && year != 2))
                   Container(
                     width: MediaQuery.of(context).size.width * 0.9,
                     padding: const EdgeInsets.only(left: 10, right: 10),
@@ -361,7 +363,7 @@ class _OnboardState extends State<Onboard> {
                         });
                         String fileName =
                             "${year.toString()}_${_class.replaceAll(" ", "_").toLowerCase()}_${_section.toLowerCase()}.json";
-                        if (_class == 'BCA DS') {
+                        if (_class == 'BCA DS' && (year == 2 || year == 3)) {
                           fileName =
                               "${year.toString()}_${_class.replaceAll(" ", "_").toLowerCase()}.json";
                         }
@@ -485,6 +487,8 @@ class _OnboardState extends State<Onboard> {
       allowedSections = ['A', 'B', 'C'];
     } else if (_class == 'BCA' && year == 3) {
       allowedSections = ['A', 'B'];
+    } else if (_class == 'BCA DS' && year == 1) {
+      allowedSections = ['A', 'B', 'C'];
     } else {
       allowedSections = [];
     }
