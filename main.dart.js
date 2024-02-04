@@ -43406,7 +43406,7 @@ else if(p==="MSc ADS"&&s.d===1)q=A.a(["A","B","C","D"],r)
 else{p=p==="BCA DS"
 if(p&&s.d===1)q=A.a(["A","B","C"],r)
 else if(o&&s.d===2)q=A.a(["A","B","C"],r)
-else if(p&&s.d===2)q=A.a(["A","B","C"],r)
+else if(p&&s.d===2)q=A.a([],r)
 else if(o&&s.d===3)q=A.a(["A","B"],r)
 else if(p&&s.d===3)q=A.a([],r)}r=A.a6(q).i("ad<1,j0<m>>")
 return A.aa(new A.ad(q,new A.ag9(),r),!0,r.i("aV.E"))},
