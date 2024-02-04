@@ -237,7 +237,7 @@ class _HomeState extends State<Home> {
                                       fontSize: 25,
                                       color: Theme.of(context)
                                           .colorScheme
-                                          .secondary,
+                                          .tertiary,
                                     ),
                                   ),
                                   Text(
@@ -317,8 +317,8 @@ class _HomeState extends State<Home> {
                                 ),
                               );
                             },
-                            minMonth: DateTime(2024),
-                            maxMonth: DateTime(2025),
+                            minMonth: DateTime.now().withoutTime, // Automatically switch to the current month
+                            maxMonth: DateTime.parse("2024-05-30"),
                             initialMonth: DateTime(2021),
                             cellAspectRatio: 1,
                             onPageChange: (date, pageIndex) {
@@ -336,8 +336,6 @@ class _HomeState extends State<Home> {
                             startDay: WeekDays
                                 .sunday, // To change the first day of the week.
                             // This callback will only work if cellBuilder is null.
-                            onEventTap: (event, date) => () {},
-                            onDateLongPress: (date) => () {},
                           ),
                         ),
                       ),

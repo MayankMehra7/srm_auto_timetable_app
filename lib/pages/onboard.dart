@@ -149,13 +149,15 @@ class _OnboardState extends State<Onboard> {
                   Wrap(
                     alignment: WrapAlignment.center,
                     direction: Axis.horizontal,
-                    children: List.generate(4, (index) {
+                    children: List.generate(3, (index) {
                       int number = index + 1;
                       return Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: TextButton(
                           onPressed: () {
                             setState(() {
+                              _class = "BCA";
+                              _section = "A";
                               year = number;
                             });
                           },
@@ -164,7 +166,7 @@ class _OnboardState extends State<Onboard> {
                             fixedSize: MaterialStatePropertyAll(Size(
                                 ((MediaQuery.of(context).size.width * 0.9) -
                                         40) /
-                                    4,
+                                    3,
                                 50)),
                             backgroundColor: MaterialStatePropertyAll(
                               number == year
@@ -198,145 +200,161 @@ class _OnboardState extends State<Onboard> {
                   ),
                   //enter dept text
                   const SizedBox(height: 15),
-                  Text(
-                    "Select your department ",
-                    style: GoogleFonts.poppins(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.left,
-                  ),
+                  year == 0
+                      ? const SizedBox()
+                      : Text(
+                          "Select your department",
+                          style: GoogleFonts.poppins(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600),
+                          textAlign: TextAlign.left,
+                        ),
                   //Department dropdown
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    padding: const EdgeInsets.only(left: 8, right: 8),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.grey)),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                        value: _department,
-                        iconEnabledColor: Theme.of(context).colorScheme.primary,
-                        icon: const Icon(Icons.arrow_drop_down),
-                        iconSize: 24,
-                        elevation: 6,
-                        isExpanded: false,
-                        style:
-                            const TextStyle(fontSize: 15, color: Colors.black),
-                        items: departments
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(
-                              value,
-                              style: GoogleFonts.poppins(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.grey[800]),
+                  year == 0
+                      ? const SizedBox()
+                      : Container(
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          padding: const EdgeInsets.only(left: 8, right: 8),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: Colors.grey)),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              value: _department,
+                              iconEnabledColor:
+                                  Theme.of(context).colorScheme.primary,
+                              icon: const Icon(Icons.arrow_drop_down),
+                              iconSize: 24,
+                              elevation: 6,
+                              isExpanded: false,
+                              style: const TextStyle(
+                                  fontSize: 15, color: Colors.black),
+                              items: departments.map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(
+                                    value,
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.normal,
+                                        color: Colors.grey[800]),
+                                  ),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                if (newValue != null) {
+                                  setState(() {
+                                    _department = newValue;
+                                  });
+                                }
+                              },
                             ),
-                          );
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          if (newValue != null) {
-                            setState(() {
-                              _department = newValue;
-                            });
-                          }
-                        },
-                      ),
-                    ),
-                  ),
+                          ),
+                        ),
                   const SizedBox(height: 15),
                   //Class text
-                  Text(
-                    "Select your class",
-                    style: GoogleFonts.poppins(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.left,
-                  ),
+                  getClass().isEmpty
+                      ? const SizedBox()
+                      : Text(
+                          "Select your class",
+                          style: GoogleFonts.poppins(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600),
+                          textAlign: TextAlign.left,
+                        ),
                   //Class dropdown
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.grey)),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                        value: _class,
-                        iconEnabledColor: Theme.of(context).colorScheme.primary,
-                        icon: const Icon(Icons.arrow_drop_down),
-                        iconSize: 24,
-                        elevation: 6,
-                        isExpanded: false,
-                        style:
-                            const TextStyle(fontSize: 15, color: Colors.black),
-                        // items: classes
-                        //     .map<DropdownMenuItem<String>>((String value) {
-                        //   return DropdownMenuItem<String>(
-                        //     value: value,
-                        //     child: Text(
-                        //       value,
-                        //       style: GoogleFonts.poppins(
-                        //           fontSize: 15,
-                        //           fontWeight: FontWeight.normal,
-                        //           color: Colors.grey[800]),
-                        //     ),
-                        //   );
-                        // }).toList(),
-                        items: getClass(),
-                        onChanged: (String? cl) {
-                          if (cl != null) {
-                            setState(() {
-                              _class = cl;
-                            });
-                          }
-                        },
-                      ),
-                    ),
-                  ),
+                  getClass().isEmpty
+                      ? const SizedBox()
+                      : Container(
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: Colors.grey)),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              value: _class,
+                              iconEnabledColor:
+                                  Theme.of(context).colorScheme.primary,
+                              icon: const Icon(Icons.arrow_drop_down),
+                              iconSize: 24,
+                              elevation: 6,
+                              isExpanded: false,
+                              style: const TextStyle(
+                                  fontSize: 15, color: Colors.black),
+                              // items: classes
+                              //     .map<DropdownMenuItem<String>>((String value) {
+                              //   return DropdownMenuItem<String>(
+                              //     value: value,
+                              //     child: Text(
+                              //       value,
+                              //       style: GoogleFonts.poppins(
+                              //           fontSize: 15,
+                              //           fontWeight: FontWeight.normal,
+                              //           color: Colors.grey[800]),
+                              //     ),
+                              //   );
+                              // }).toList(),
+                              items: getClass(),
+                              onChanged: (String? cl) {
+                                if (cl != null) {
+                                  setState(() {
+                                    _section = "A";
+                                    _class = cl;
+                                  });
+                                }
+                              },
+                            ),
+                          ),
+                        ),
                   //enter section text
                   const SizedBox(height: 15),
                   //if (_class != 'BCA DS' && (year != 1 && year != 2))
-                  Text(
-                    "Select your section ",
-                    style: GoogleFonts.poppins(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.left,
-                  ),
+                  getSection().isEmpty
+                      ? const SizedBox()
+                      : Text(
+                          "Select your section ",
+                          style: GoogleFonts.poppins(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600),
+                          textAlign: TextAlign.left,
+                        ),
                   //Section dropdown
                   //if (_class != 'BCA DS' && (year != 1 && year != 2))
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.grey)),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                        value: _section,
-                        iconEnabledColor: Theme.of(context).colorScheme.primary,
-                        icon: const Icon(Icons.arrow_drop_down),
-                        iconSize: 24,
-                        elevation: 6,
-                        isExpanded: false,
-                        style:
-                            const TextStyle(fontSize: 15, color: Colors.black),
-                        items: getSection(),
-                        onChanged: (String? sec) {
-                          if (sec != null) {
-                            setState(() {
-                              _section = sec;
-                            });
-                          }
-                        },
-                      ),
-                    ),
-                  ),
+                  getSection().isEmpty
+                      ? const SizedBox()
+                      : Container(
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: Colors.grey)),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              value: _section,
+                              iconEnabledColor:
+                                  Theme.of(context).colorScheme.primary,
+                              icon: const Icon(Icons.arrow_drop_down),
+                              iconSize: 24,
+                              elevation: 6,
+                              isExpanded: false,
+                              style: const TextStyle(
+                                  fontSize: 15, color: Colors.black),
+                              items: getSection(),
+                              onChanged: (String? sec) {
+                                if (sec != null) {
+                                  setState(() {
+                                    _section = sec;
+                                  });
+                                }
+                              },
+                            ),
+                          ),
+                        ),
                   //continue text_icon button
                   const SizedBox(height: 20),
                   TextButton(
@@ -481,15 +499,15 @@ class _OnboardState extends State<Onboard> {
       allowedSections = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
     } else if (_class == 'MSc ADS' && year == 1) {
       allowedSections = ['A', 'B', 'C', 'D'];
-    } else if (_class == 'BCA' && year == 2) {
+    } else if (_class == 'BCA DS' && year == 1) {
       allowedSections = ['A', 'B', 'C'];
     } else if (_class == 'BCA' && year == 2) {
+      allowedSections = ['A', 'B', 'C'];
+    } else if (_class == 'BCA DS' && year == 2) {
       allowedSections = ['A', 'B', 'C'];
     } else if (_class == 'BCA' && year == 3) {
       allowedSections = ['A', 'B'];
-    } else if (_class == 'BCA DS' && year == 1) {
-      allowedSections = ['A', 'B', 'C'];
-    } else {
+    } else if (_class == 'BCA DS' && year == 3) {
       allowedSections = [];
     }
 
@@ -517,7 +535,7 @@ class _OnboardState extends State<Onboard> {
       allowedClass = ['BCA DS', 'BCA'];
     } else if (year == 3) {
       allowedClass = ['BCA DS', 'BCA'];
-    } else {
+    } else if (year == 4) {
       allowedClass = [];
     }
 
