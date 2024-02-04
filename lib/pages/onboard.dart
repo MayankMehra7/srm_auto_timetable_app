@@ -504,7 +504,7 @@ class _OnboardState extends State<Onboard> {
     } else if (_class == 'BCA' && year == 2) {
       allowedSections = ['A', 'B', 'C'];
     } else if (_class == 'BCA DS' && year == 2) {
-      allowedSections = ['A', 'B', 'C'];
+      allowedSections = [];
     } else if (_class == 'BCA' && year == 3) {
       allowedSections = ['A', 'B'];
     } else if (_class == 'BCA DS' && year == 3) {
