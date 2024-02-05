@@ -325,8 +325,6 @@ class _HomeState extends State<Home> {
                               setState(() => selectedMonth = date);
                             },
                             onCellTap: (events, date) {
-                              // Implement callback when user taps on a cell.
-                              print(date);
                               getDayorder(date);
                               setState(() {
                                 loadingTimetable = true;
