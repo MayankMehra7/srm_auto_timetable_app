@@ -36,27 +36,29 @@ def getHour():
 
 def main(context):
     day_order = day_order_data[str(datetime.datetime.now().strftime("%d-%m-%y"))]
-    with onesignal.ApiClient(configuration) as api_client:
-        api_instance = default_api.DefaultApi(api_client)
+    context.log(day_order)
+    if (day_order != "nothing"):
+        with onesignal.ApiClient(configuration) as api_client:
+            api_instance = default_api.DefaultApi(api_client)
 
 
-        # Example: send a web push notification to chrome browsers
-        def createNotification():
-            notification = Notification()
-            notification.set_attribute('app_id', "d43f4e31-c574-4639-b7e6-76ae0e24b8d2")
-            notification.set_attribute('url', 'https://srmtt.livewires.tech/#/home')
-            notificationMessage = "Today's day order: " + day_order + ", Next hour: " + str(getHour())
-            notificationPayload = dict()
-            notificationPayload["en"] = notificationMessage
-            notification.set_attribute('contents', notificationPayload)
-            notification.set_attribute('is_any_web', True)
-            notification.set_attribute('included_segments', ['All'])
-            return notification
+            # Example: send a web push notification to chrome browsers
+            def createNotification():
+                notification = Notification()
+                notification.set_attribute('app_id', "d43f4e31-c574-4639-b7e6-76ae0e24b8d2")
+                notification.set_attribute('url', 'https://srmtt.livewires.tech/#/home')
+                notificationMessage = "Today's day order: " + day_order + ", Next hour: " + str(getHour())
+                notificationPayload = dict()
+                notificationPayload["en"] = notificationMessage
+                notification.set_attribute('contents', notificationPayload)
+                notification.set_attribute('is_any_web', True)
+                notification.set_attribute('included_segments', ['All'])
+                return notification
         
-        # create a notification instance
-        notification = createNotification()
-        # send notification
-        notificationResponse = api_instance.create_notification(notification)
+            # create a notification instance
+            notification = createNotification()
+            # send notification
+            notificationResponse = api_instance.create_notification(notification)
     return context.res.json({"msg":str(notificationResponse)})
 
 day_order_data = {
