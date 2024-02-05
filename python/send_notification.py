@@ -32,7 +32,7 @@ def getHour():
         time_ranges.append(date)
         time_ranges.sort()
         hour = time_ranges.index(date)
-        return str(hour)
+        return hour
 
 def main(context):
     date = day_order_data[datetime.datetime.now().strftime("%d-%m-%y")]
@@ -45,7 +45,8 @@ def main(context):
             notification = Notification()
             notification.set_attribute('app_id', "d43f4e31-c574-4639-b7e6-76ae0e24b8d2")
             notification.set_attribute('url', 'https://srmtt.livewires.tech/#/home')
-            notification.set_attribute('contents', {"en": "Today's day order: " + day_order_data[date] + "Next hour: " + getHour()})
+            notificationMessage = "Today's day order: " + str(day_order_data[date]) + ", Next hour: " + str(getHour())
+            notification.set_attribute('contents', {"en": notificationMessage})
             notification.set_attribute('is_any_web', True)
             notification.set_attribute('included_segments', ['All'])
             return notification
