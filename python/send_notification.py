@@ -35,7 +35,7 @@ def getHour():
         return str(hour)
 
 def main(context):
-    date = day_order_data[datetime.datetime.now().strftime("%d-%m-%Y")]
+    date = day_order_data[datetime.datetime.now().strftime("%d-%m-%y")]
     with onesignal.ApiClient(configuration) as api_client:
         api_instance = default_api.DefaultApi(api_client)
 
