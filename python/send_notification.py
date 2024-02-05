@@ -35,7 +35,7 @@ def getHour():
         return hour
 
 def main(context):
-    date = day_order_data[datetime.datetime.now().strftime("%d-%m-%y")]
+    day_order = day_order_data[str(datetime.datetime.now().strftime("%d-%m-%y"))]
     with onesignal.ApiClient(configuration) as api_client:
         api_instance = default_api.DefaultApi(api_client)
 
@@ -45,8 +45,10 @@ def main(context):
             notification = Notification()
             notification.set_attribute('app_id', "d43f4e31-c574-4639-b7e6-76ae0e24b8d2")
             notification.set_attribute('url', 'https://srmtt.livewires.tech/#/home')
-            notificationMessage = "Today's day order: " + str(day_order_data[date]) + ", Next hour: " + str(getHour())
-            notification.set_attribute('contents', {"en": notificationMessage})
+            notificationMessage = "Today's day order: " + day_order + ", Next hour: " + str(getHour())
+            notificationPayload = dict()
+            notificationPayload["en"] = notificationMessage
+            notification.set_attribute('contents', notificationPayload)
             notification.set_attribute('is_any_web', True)
             notification.set_attribute('included_segments', ['All'])
             return notification
