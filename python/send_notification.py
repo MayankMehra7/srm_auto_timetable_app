@@ -37,7 +37,7 @@ def getHour():
 def main(context):
     day_order = day_order_data[str(datetime.datetime.now().strftime("%d-%m-%y"))]
     context.log(day_order)
-    if (day_order != "nothing"):
+    if (day_order["do"] != "nothing"):
         with onesignal.ApiClient(configuration) as api_client:
             api_instance = default_api.DefaultApi(api_client)
 
