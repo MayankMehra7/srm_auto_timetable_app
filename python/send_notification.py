@@ -47,7 +47,7 @@ def main(context):
                 notification = Notification()
                 notification.set_attribute('app_id', "d43f4e31-c574-4639-b7e6-76ae0e24b8d2")
                 notification.set_attribute('url', 'https://srmtt.livewires.tech/#/home')
-                notificationMessage = "Today's day order: " + day_order + ", Next hour: " + str(getHour())
+                notificationMessage = "Today's day order: " + day_order["do"] + ", Next hour: " + str(getHour())
                 notificationPayload = dict()
                 notificationPayload["en"] = notificationMessage
                 notification.set_attribute('contents', notificationPayload)
