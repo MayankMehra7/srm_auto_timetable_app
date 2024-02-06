@@ -9,7 +9,7 @@ configuration = onesignal.Configuration(
     user_key = os.environ['USER_KEY']
 )
 
-def getHour():
+def getHour(context):
     year, month, day, hour, minute = datetime.datetime.now().year, datetime.datetime.now().month, datetime.datetime.now().day, datetime.datetime.now().hour, datetime.datetime.now().minute
     date = datetime.datetime(year=year, month=month, day=day, hour=hour, minute=minute)
     time_ranges = [
@@ -31,6 +31,7 @@ def getHour():
     else:
         time_ranges.append(date)
         time_ranges.sort()
+	context.log(time_ranges)    
         hour = time_ranges.index(date)
         return hour
 
@@ -47,7 +48,7 @@ def main(context):
                 notification = Notification()
                 notification.set_attribute('app_id', "d43f4e31-c574-4639-b7e6-76ae0e24b8d2")
                 notification.set_attribute('url', 'https://srmtt.livewires.tech/#/home')
-                notificationMessage = "Today's day order: " + day_order["do"] + ", Next hour: " + str(getHour())
+                notificationMessage = "Today's day order: " + day_order["do"] + ", Next hour: " + str(getHour(context))
                 notificationPayload = dict()
                 notificationPayload["en"] = notificationMessage
                 notification.set_attribute('contents', notificationPayload)
