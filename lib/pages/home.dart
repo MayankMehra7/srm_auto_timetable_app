@@ -29,11 +29,11 @@ class _HomeState extends State<Home> {
     "9:20",
     "10:10",
     "11:00",
-    "12:00",
-    "12:50",
-    "1:40",
-    "2:30",
-    "3:20",
+    "11.50",
+    "12:40",
+    "1:30",
+    "2:15",
+    "3:00",
   ];
 
   final List<String> endTimes = [
@@ -41,11 +41,11 @@ class _HomeState extends State<Home> {
     "10:10",
     "11:00",
     "11:50",
-    "12:50",
-    "1:40",
-    "2:30",
-    "3:20",
-    "4:10",
+    "12:40",
+    "1:30",
+    "2:15",
+    "3:00",
+    "3.45"
   ];
 
   String dayOrder = "Day 1";
@@ -141,13 +141,31 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, top: 5, bottom: 5),
+                      child: Row(children: [
+                        Image.asset(
+                          "assets/icons/srm.png",
+                          width: MediaQuery.of(context).size.width * 0.25,
+                          //height: MediaQuery.of(context).size.height * 0.3
+                        ),
+                        const SizedBox(width: 160),
+                        Image.asset(
+                          "assets/icons/lw_light.png",
+                          width: MediaQuery.of(context).size.width * 0.25,
+                          //height: MediaQuery.of(context).size.height * 0.3
+                        )
+                      ]),
+                    ),
+                    const SizedBox(height: 5),
                     SizedBox(
                       height: 120,
                       width: MediaQuery.of(context).size.width,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.7,
+                          width: MediaQuery.of(context).size.width * 0.2,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -157,8 +175,10 @@ class _HomeState extends State<Home> {
                                 TextSpan(
                                     text: "Hey,\n",
                                     style: GoogleFonts.poppins(
-                                        color: Colors.white,
-                                        fontSize: 35,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
+                                        fontSize: 33,
                                         fontWeight: FontWeight.bold)),
                                 TextSpan(
                                   text: FirebaseAuth
@@ -168,7 +188,7 @@ class _HomeState extends State<Home> {
                                       color: Theme.of(context)
                                           .colorScheme
                                           .tertiary,
-                                      fontSize: 25,
+                                      fontSize: 24,
                                       fontWeight: FontWeight.bold),
                                 )
                               ])),
@@ -308,8 +328,7 @@ class _HomeState extends State<Home> {
                                                       .colorScheme
                                                       .tertiary
                                                   : Colors.white
-                                              : const Color.fromARGB(
-                                                  255, 7, 119, 211),
+                                              : Colors.white60,
                                         ),
                                       ),
                                     ],
@@ -317,7 +336,8 @@ class _HomeState extends State<Home> {
                                 ),
                               );
                             },
-                            minMonth: DateTime.now().withoutTime, // Automatically switch to the current month
+                            minMonth: DateTime.now()
+                                .withoutTime, // Automatically switch to the current month
                             maxMonth: DateTime.parse("2024-05-30"),
                             initialMonth: DateTime(2021),
                             cellAspectRatio: 1,
