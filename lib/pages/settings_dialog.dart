@@ -5,6 +5,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 dialogueBox(BuildContext context) {
+  // var _isFocused = false;
+  // final snackBar = SnackBar(
+  //   backgroundColor: Colors.green,
+  //   content: Text('Thankyou for your valuable feedback!\nTeam LiveWires_🖤',
+  //       style: GoogleFonts.poppins(fontSize: 12)),
+  //   action: SnackBarAction(
+  //     label: '',
+  //     onPressed: () {},
+  //   ),
+  // );
   return showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -113,6 +123,86 @@ dialogueBox(BuildContext context) {
                       ),
                       //follow us
                       const SizedBox(height: 15),
+
+                      // Center(
+                      //   child: Card(
+                      //     color: const Color.fromARGB(255, 69, 147, 48),
+                      //     margin: const EdgeInsets.all(20),
+                      //     elevation: 4,
+                      //     shape: RoundedRectangleBorder(
+                      //       borderRadius: BorderRadius.circular(15),
+                      //     ),
+                      //     child: Padding(
+                      //       padding: const EdgeInsets.all(20),
+                      //       child: Column(
+                      //         crossAxisAlignment: CrossAxisAlignment.stretch,
+                      //         children: [
+                      //           Text(
+                      //             "How was your overall experience?",
+                      //             style: GoogleFonts.poppins(
+                      //               color: Colors.black,
+                      //               fontSize: 15,
+                      //               fontWeight: FontWeight.bold,
+                      //             ),
+                      //           ),
+                      //           const SizedBox(height: 10),
+                      //           Text(
+                      //             "How can we improve?",
+                      //             style: GoogleFonts.poppins(
+                      //               color: Colors.white,
+                      //               fontSize: 12,
+                      //               fontWeight: FontWeight.w500,
+                      //             ),
+                      //           ),
+                      //           const SizedBox(height: 10),
+                      //           TextFormField(
+                      //             style: GoogleFonts.poppins(
+                      //                 color: Colors.black, fontSize: 12),
+                      //             decoration: InputDecoration(
+                      //               hintText: "Write your feedback",
+                      //               hintStyle: GoogleFonts.poppins(
+                      //                   color: Colors.white70,
+                      //                   fontSize: 10,
+                      //                   fontWeight: FontWeight.normal),
+                      //               border: OutlineInputBorder(
+                      //                 borderSide: BorderSide(
+                      //                   color: _isFocused
+                      //                       ? Colors.black
+                      //                       : Colors.white,
+                      //                 ),
+                      //               ),
+                      //               filled: true,
+                      //               fillColor: Colors.white.withOpacity(0.05),
+                      //             ),
+                      //             focusNode: FocusNode(),
+                      //           ),
+                      //           SizedBox(height: 20),
+                      //           ElevatedButton(
+                      //             onPressed: () {
+                      //               ScaffoldMessenger.of(context)
+                      //                   .showSnackBar(snackBar);
+                      //             },
+                      //             style: ElevatedButton.styleFrom(
+                      //              // primary: Colors.white,
+                      //             // onPrimary: Colors.green,
+                      //               shape: RoundedRectangleBorder(
+                      //                 borderRadius: BorderRadius.circular(10),
+                      //               ),
+                      //             ),
+                      //             child: Text(
+                      //               "Submit",
+                      //               style: GoogleFonts.poppins(
+                      //                   fontSize: 15,
+                      //                   color: Colors.green,
+                      //                   fontWeight: FontWeight.bold),
+                      //             ),
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                      // const SizedBox(height: 15),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
