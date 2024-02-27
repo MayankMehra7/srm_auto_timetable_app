@@ -385,7 +385,7 @@ class _OnboardState extends State<Onboard> {
                               "${year.toString()}_${_class.replaceAll(" ", "_").toLowerCase()}.json";
                         }
                         http.Response res = await http.get(Uri.parse(
-                            'https://raw.githubusercontent.com/LiveWiresSRM2023/srm_auto_timetable_app/website/assets/json/$fileName'));
+                            'https://raw.githubusercontent.com/LiveWiresSRM2023/srm_auto_timetable_app/Main/json/$fileName'));
                         if (res.statusCode == 404) {
                           if (!mounted) return;
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
