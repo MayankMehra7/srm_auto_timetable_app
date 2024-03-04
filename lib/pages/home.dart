@@ -142,8 +142,7 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                      padding:
-                          const EdgeInsets.only(left: 8, top: 5, bottom: 5),
+                      padding: const EdgeInsets.only(left: 8),
                       child: Row(children: [
                         Image.asset(
                           "assets/icons/srm.png",
@@ -160,7 +159,7 @@ class _HomeState extends State<Home> {
                     ),
                     const SizedBox(height: 5),
                     SizedBox(
-                      height: 120,
+                      height: 80,
                       width: MediaQuery.of(context).size.width,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),

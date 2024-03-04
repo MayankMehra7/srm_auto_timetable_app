@@ -31,7 +31,7 @@ def getHour(context):
     else:
         time_ranges.append(date)
         time_ranges.sort()
-	context.log(time_ranges)    
+        context.log(time_ranges)    
         hour = time_ranges.index(date)
         return hour
 

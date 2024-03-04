@@ -36,13 +36,13 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   google_fonts: ^6.1.0
-  firebase_auth: ^4.16.0
+  firebase_auth: ^4.17.6
   firebase_core: ^2.24.2
   shared_preferences: ^2.2.2
   http:
   intl: ^0.18.0
   flutter_calendar_carousel: ^2.4.2
-  calendar_view: ^1.0.4
+  calendar_view: ^1.1.0
   appwrite: ^11.0.1
   js: ^0.6.7
   url_launcher: ^6.2.4
