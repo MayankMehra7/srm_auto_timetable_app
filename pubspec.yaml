@@ -46,6 +46,7 @@ dependencies:
   appwrite: ^11.0.1
   js: ^0.6.7
   url_launcher: ^6.2.4
+  firebase_analytics: ^10.8.7
 
 
 dev_dependencies:

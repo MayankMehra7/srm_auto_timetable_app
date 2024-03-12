@@ -6,6 +6,7 @@ import 'package:ScheduleSRM/pages/settings_dialog.dart';
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:calendar_view/calendar_view.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -122,6 +123,7 @@ class _HomeState extends State<Home> {
     getDayorder(DateTime.now());
     checkAuth();
     getTimetableString();
+    FirebaseAnalytics.instance.logEvent(name: 'usage', parameters: {'dept': });
   }
 
   @override
