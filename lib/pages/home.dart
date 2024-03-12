@@ -123,7 +123,6 @@ class _HomeState extends State<Home> {
     getDayorder(DateTime.now());
     checkAuth();
     getTimetableString();
-    FirebaseAnalytics.instance.logEvent(name: 'usage', parameters: {'dept': });
   }
 
   @override
