@@ -26,7 +26,25 @@ ScheduleSRM is built and mainted by [LiveWires_](https://livewires.tech)
 - Run `flutter doctor` to ensure the platform is setup properly
 - Open the Folder and run `flutter run -d chrome` to run debug session in Chrome
 
-## Contributing
+## Contributors
 <a href="https://github.com/LiveWiresSRM2023/srm_auto_timetable_app/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=LiveWiresSRM2023/srm_auto_timetable_app" />
 </a>
+
+## Contributing
+We welcome contributions! To contribute, follow these steps:
+
+1. Fork the repository.
+2. Create a new branch: 
+    ```sh
+    git checkout -b feature/your-feature
+    ```
+3. Make your changes and commit them:
+    ```sh
+    git commit -m 'Add some feature'
+    ```
+4. Push to the branch:
+    ```sh
+    git push origin feature/your-feature
+    ```
+5. Open a pull request.
