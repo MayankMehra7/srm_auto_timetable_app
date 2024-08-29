@@ -22,6 +22,9 @@ ScheduleSRM is built and mainted by [LiveWires_](https://livewires.tech)
 
 ## Get started
 - Clone the repo
+  ```bash
+  git clone git@github.com:LiveWiresSRM2023/srm_auto_timetable_app.git
+  ```
 - Setup Flutter environment
 - Run `flutter doctor` to ensure the platform is setup properly
 - Open the Folder and run `flutter run -d chrome` to run debug session in Chrome
